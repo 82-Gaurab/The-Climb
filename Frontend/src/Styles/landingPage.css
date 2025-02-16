@@ -33,7 +33,7 @@ body {
   margin-bottom: 45vh;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .hs-content {
@@ -41,7 +41,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
 }
 
@@ -52,7 +52,7 @@ body {
   height: fit-content;
   width: fit-content;
 
-  margin-top: 8vh;
+  margin: 3vh auto;
 }
 
 .hs-content .titleCard h1 {
@@ -77,15 +77,17 @@ body {
 
 /* Navigation */
 
-.navigation {
+.heroSection .navigation {
   display: flex;
   justify-content: space-between;
+  padding-right: 20px;
+  padding-top: 10px;
 }
 
 .navigation ul {
   display: flex;
   list-style-type: none;
-  gap: 20px;
+  gap: 30px;
   flex-wrap: wrap;
 
   font-size: 17px;
@@ -99,24 +101,29 @@ body {
 .latest-treks {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20vh;
+  margin-bottom: 30vh;
 }
 
 .popular-treks h1,
-.latest-treks h1 {
+.latest-treks h1,
+.reviews h1 {
   font-weight: bolder;
-  font-size: 3rem;
-  margin-bottom: 12px;
+  font-size: 42px;
+  margin-bottom: 30px;
 }
 
 .popular-treks .trek-list,
 .latest-treks .trek-list {
   display: flex;
-  gap: 25px;
+  gap: 40px;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
-.latest-treks .trek-list {
-  gap: 40px;
-  flex-wrap: wrap;
+.review-list .review-card {
+  transition: all 0.5s;
+}
+
+.reviews .review-list .review-card:hover {
+  scale: 1.09;
 }

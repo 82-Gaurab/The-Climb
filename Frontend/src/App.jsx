@@ -10,7 +10,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Landing = React.lazy(() => import("./Components/LandingPage"));
-const TrekCard = React.lazy(() => import("./Components/TrekCard"));
+const ReviewCard = React.lazy(() => import("./Components/ReviewCard"));
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to={"/main"} />} />
           <Route path="/main" element={<Landing />} />
-          <Route path="/card" element={<TrekCard />} />
+          <Route path="/card" element={<ReviewCard />} />
         </Routes>
       </Suspense>
     </Router>
