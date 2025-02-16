@@ -7,7 +7,7 @@ export default function ReviewCard({ review }) {
     <div
       className="review-card max-w-md mx-auto m-3 min-w-[300px] w-[500px] overflow-hidden rounded-3xl font-[font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif]"
       style={{
-        boxShadow: "0 0  30px #bebebe,-15px -15px 30px #ffffff",
+        boxShadow: "0 0  10px #bebebe,-15px -15px 10px #ffffff",
       }}
     >
       <div

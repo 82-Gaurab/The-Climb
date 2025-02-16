@@ -8,6 +8,7 @@ import mountain2 from "../assets/mountain2.jpg";
 import mountain3 from "../assets/mountain3.jpg";
 import mountain4 from "../assets/mountain4.jpg";
 import profilePic from "../assets/user.png";
+import AgencyCard from "./AgencyCard";
 
 export default function LandingPage() {
   const [isHovered, setIsHovered] = useState(false);
@@ -143,9 +144,25 @@ export default function LandingPage() {
     },
   ];
 
+  const agencies = [
+    {
+      photo: profilePic,
+      name: "Anubhav",
+    },
+    {
+      photo: profilePic,
+      name: "Gaurab",
+    },
+    {
+      photo: profilePic,
+      name: "Prabin",
+    },
+  ];
+
   return (
     <div>
-      <div className="heroSection">
+      {/* HERO SECTION */}
+      <section className="heroSection">
         <div className="navigation">
           <ul>
             <li>Home</li>
@@ -169,27 +186,30 @@ export default function LandingPage() {
             <p>Discover Breathtaking Mountain Trails</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="popular-treks">
+      {/* POPULAR TREKS */}
+      <section className="popular-treks">
         <h1>Popular Treks</h1>
         <div className="trek-list">
           {popularTrek.map((trek, index) => (
             <TrekCard key={index} trek={trek} />
           ))}
         </div>
-      </div>
+      </section>
 
-      <div className="latest-treks">
+      {/* LATEST TREKS */}
+      <section className="latest-treks">
         <h1>Latest Treks</h1>
         <div className="trek-list">
           {latestTrek.map((trek, index) => (
             <TrekCard key={index} trek={trek} />
           ))}
         </div>
-      </div>
+      </section>
 
-      <div className="reviews">
+      {/* REVIEWS */}
+      <section className="reviews">
         <h1>What People Say About Us</h1>
         <div
           className="review-list flex gap-[20px] overflow-x-hidden "
@@ -203,7 +223,20 @@ export default function LandingPage() {
             </div>
           ))}
         </div>
-      </div>
+      </section>
+
+      {/* AGENCIES */}
+      <section className="agencies">
+        <div className="agency-list">
+          {agencies.map((agency, index) => (
+            <AgencyCard key={index} agency={agency} />
+          ))}
+        </div>
+      </section>
+
+      <section className="about-us">
+        <h1>Contact us</h1>
+      </section>
     </div>
   );
 }

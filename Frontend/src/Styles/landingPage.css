@@ -98,7 +98,9 @@ body {
 /* Trek Lists */
 
 .popular-treks,
-.latest-treks {
+.latest-treks,
+.reviews,
+.agencies {
   display: flex;
   flex-direction: column;
   margin-bottom: 30vh;
@@ -113,7 +115,8 @@ body {
 }
 
 .popular-treks .trek-list,
-.latest-treks .trek-list {
+.latest-treks .trek-list,
+.agencies .agency-list {
   display: flex;
   gap: 40px;
   flex-wrap: wrap;
@@ -121,7 +124,7 @@ body {
 }
 
 .review-list .review-card {
-  transition: all 0.5s;
+  transition: all 0.5s ease-out;
 }
 
 .reviews .review-list .review-card:hover {

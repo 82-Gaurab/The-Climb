@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import "./App.css";
+import mountain_loading from "./assets/mountain-loading_gif.gif";
 
 import {
   BrowserRouter as Router,
@@ -15,7 +16,17 @@ const ReviewCard = React.lazy(() => import("./Components/ReviewCard"));
 function App() {
   return (
     <Router>
-      <Suspense fallback={<div>Loading....</div>}>
+      <Suspense
+        fallback={
+          <div>
+            <img
+              src={mountain_loading}
+              alt="Loading"
+              style={{ margin: "20vh auto", height: "30em" }}
+            />
+          </div>
+        }
+      >
         <Routes>
           <Route path="/" element={<Navigate to={"/main"} />} />
           <Route path="/main" element={<Landing />} />
