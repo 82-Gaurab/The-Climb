@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import "../Styles/LandingPage.css";
-import TrekCard from "./TrekCard";
-import ReviewCard from "./ReviewCard";
+import TrekCard from "./utility/TrekCard";
+import ReviewCard from "./utility/ReviewCard";
 
-import mountain1 from "../assets/mountain1.jpg";
-import mountain2 from "../assets/mountain2.jpg";
-import mountain3 from "../assets/mountain3.jpg";
-import mountain4 from "../assets/mountain4.jpg";
-import profilePic from "../assets/user.png";
-import AgencyCard from "./AgencyCard";
+import mountain1 from "../assets/images/mountain1.jpg";
+import mountain2 from "../assets/images/mountain2.jpg";
+import mountain3 from "../assets/images/mountain3.jpg";
+import mountain4 from "../assets/images/mountain4.jpg";
+import profilePic from "../assets/icon/user.png";
+import SocialContact from "./utility/SocialContact";
 
 export default function LandingPage() {
   const [isHovered, setIsHovered] = useState(false);
@@ -144,21 +144,6 @@ export default function LandingPage() {
     },
   ];
 
-  const agencies = [
-    {
-      photo: profilePic,
-      name: "Anubhav",
-    },
-    {
-      photo: profilePic,
-      name: "Gaurab",
-    },
-    {
-      photo: profilePic,
-      name: "Prabin",
-    },
-  ];
-
   return (
     <div>
       {/* HERO SECTION */}
@@ -166,16 +151,13 @@ export default function LandingPage() {
         <div className="navigation">
           <ul>
             <li>Home</li>
-            <li>Trekking package</li>
-            <li>Agencies</li>
+            <li>Treks</li>
+            <li>Contact Us</li>
           </ul>
 
           <ul>
             <li>
               <button>Login</button>
-            </li>
-            <li>
-              <button>Signup</button>
             </li>
           </ul>
         </div>
@@ -208,7 +190,25 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* REVIEWS */}
+      {/* ABOUT US */}
+      <section className="about-us">
+        <h1>About Us</h1>
+        <div className="content">
+          <ul>
+            <li>
+              <p>
+                Welcome to Mountain Treks Management, your go-to platform for
+                planning and managing unforgettable mountain treks. Explore top
+                treks, add your own itineraries, and manage your adventures with
+                ease. Let&apos;s take your trekking to new heights!
+              </p>
+            </li>
+            <li>logo</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
       <section className="reviews">
         <h1>What People Say About Us</h1>
         <div
@@ -225,18 +225,24 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* AGENCIES */}
-      <section className="agencies">
-        <div className="agency-list">
-          {agencies.map((agency, index) => (
-            <AgencyCard key={index} agency={agency} />
-          ))}
+      {/* FOOTER */}
+      <footer>
+        <p>&copy; {new Date().getFullYear()} The Climb. All rights reserved.</p>
+        <div className="flex justify-center space-x-4 mt-2">
+          <a href="#" className="hover:text-gray-400">
+            Privacy Policy
+          </a>
+          <a href="#" className="hover:text-gray-400">
+            Terms of Service
+          </a>
+          <a href="#" className="hover:text-gray-400">
+            Contact
+          </a>
         </div>
-      </section>
-
-      <section className="about-us">
-        <h1>Contact us</h1>
-      </section>
+        <div className="contact-platform">
+          <SocialContact />
+        </div>
+      </footer>
     </div>
   );
 }

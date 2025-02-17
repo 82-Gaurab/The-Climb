@@ -7,11 +7,10 @@
 html,
 body {
   margin: 0;
-  padding: 8px;
+  padding: 0px;
   box-sizing: border-box;
   background-color: white;
-  /* background-image: url("../assets/white-hexagons-background-with-hexagon-pattern_655634-78.avif"); */
-  background-image: url("../assets/pageBg.jpg");
+  background-image: url("../assets/images/pageBg.jpg");
   background-repeat: round;
   background-size: contain;
 
@@ -22,15 +21,17 @@ body {
 /* Hero Section */
 
 .heroSection {
-  background-image: url("../assets/mountMg.jpg");
+  background-image: url("../assets/images/mountMg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   width: 100%;
   height: 100vh;
-  box-shadow: 0 10px 10px #cfd8e6;
+  box-shadow: 0 -10px 10px #cfd8e6 inset, 0 0px 5px #cfd8e6 inset;
 
-  border-radius: 12px;
+  /* border-radius: 12px; */
   margin-bottom: 45vh;
+  padding: 10px;
 
   display: flex;
   flex-direction: column;
@@ -52,7 +53,7 @@ body {
   height: fit-content;
   width: fit-content;
 
-  margin: 3vh auto;
+  margin: 5px auto;
 }
 
 .hs-content .titleCard h1 {
@@ -73,6 +74,7 @@ body {
   font-size: 1.5rem;
   color: #172b53;
   font-weight: 700;
+  margin-top: -15px;
 }
 
 /* Navigation */
@@ -127,6 +129,58 @@ body {
   transition: all 0.5s ease-out;
 }
 
+.review-list {
+  margin: 0 50px;
+}
+
 .reviews .review-list .review-card:hover {
   scale: 1.09;
+}
+
+/* ABOUT US */
+.about-us .content {
+  background-image: url("../assets/images/trekking.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  padding: 5px;
+  height: 60vh;
+  margin: 8px;
+}
+
+.about-us .content ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+
+  padding: 10px;
+  margin: 80px 0 0 0;
+}
+
+.about-us .content p {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.29);
+  width: 35em;
+  text-align: start;
+  font-size: 20px;
+}
+
+footer {
+  background-image: url("../assets/images/footer-background.avif");
+  background-position: center;
+  background-size: cover;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10em;
+  overflow: hidden;
+}
+
+footer .contact-platform {
+  margin-top: 40px;
 }
