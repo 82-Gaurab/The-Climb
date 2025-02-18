@@ -11,6 +11,8 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Landing = React.lazy(() => import("./Components/LandingPage"));
+const Login = React.lazy(() => import("./Components/LoginComponent"));
+const Register = React.lazy(() => import("./Components/RegisterComponent"));
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to={"/main"} />} />
           <Route path="/main" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
         </Routes>
       </Suspense>
     </Router>

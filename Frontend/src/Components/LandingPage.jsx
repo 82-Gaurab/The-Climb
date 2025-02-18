@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import "../Styles/LandingPage.css";
-import TrekCard from "./utility/TrekCard";
-import ReviewCard from "./utility/ReviewCard";
+import TrekCard from "../utility/TrekCard";
+import ReviewCard from "../utility/ReviewCard";
 
 import mountain1 from "../assets/images/mountain1.jpg";
 import mountain2 from "../assets/images/mountain2.jpg";
 import mountain3 from "../assets/images/mountain3.jpg";
 import mountain4 from "../assets/images/mountain4.jpg";
 import profilePic from "../assets/icon/user.png";
-import SocialContact from "./utility/SocialContact";
+import SocialContact from "../utility/SocialContact";
 
 export default function LandingPage() {
   const [isHovered, setIsHovered] = useState(false);

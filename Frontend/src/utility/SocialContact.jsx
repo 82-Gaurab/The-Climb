@@ -1,4 +1,4 @@
-import "../../Styles/SocialContact.css"; // Assuming the CSS is saved in a file named 'SocialContact.css'
+import "../Styles/SocialContact.css";
 
 const SocialContact = () => {
   return (

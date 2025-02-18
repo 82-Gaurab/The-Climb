@@ -35,8 +35,8 @@ export default function RegisterComponent() {
     // Proceed with form submission or further validation
   };
   return (
-    <div>
-      <form className="flex flex-col items-center  flex-wrap gap-3 p-10 rounded-3xl bg-slate-200  w-sm shadow-lg shadow-zinc-700">
+    <div className="w-fit m-auto flex items-center justify-center min-h-screen ">
+      <form className="flex flex-col items-center  flex-wrap gap-3 pt-10 pr-10 pl-10 pb4 rounded-3xl bg-slate-200  w-lg shadow-2xl shadow-zinc-500 border-slate-300 border-[1px]">
         <p className="text-3xl font-sans mb-3 antialiased font-bold text-gray-800">
           Register
         </p>
@@ -51,7 +51,7 @@ export default function RegisterComponent() {
               setName(e.target.value);
               setError("");
             }}
-            className="pl-2 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
+            className="pl-4 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
           />
         </p>
         <p className="flex flex-col items-center w-full">
@@ -64,7 +64,7 @@ export default function RegisterComponent() {
               setEmailError("");
               setError("");
             }}
-            className="pl-2 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
+            className="pl-4 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
           />
           {emailError && <p className="text-red-500">{emailError}</p>}
         </p>
@@ -78,7 +78,7 @@ export default function RegisterComponent() {
               setPasswordError("");
               setError("");
             }}
-            className="pl-2 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
+            className="pl-4 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
           />
           {passwordError && <p className="text-red-500">{passwordError}</p>}
         </p>
@@ -92,7 +92,7 @@ export default function RegisterComponent() {
               setConfirmPasswordError("");
               setError("");
             }}
-            className="pl-2 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
+            className="pl-4 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
           />
           {confirmPasswordError && (
             <p className="text-red-500">{confirmPasswordError}</p>
@@ -100,7 +100,8 @@ export default function RegisterComponent() {
         </p>
         <p className="w-full">
           <button
-            className="bg-sky-500 pl-5 pr-5 pt-2 pb-2 text-white antialiased rounded-3xl w-full cursor-pointer hover:bg-sky-700 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md font-bold color-white"
+            style={{ borderRadius: "20px" }}
+            className="bg-sky-500 pl-5 pr-5 pt-2 pb-2 text-white antialiased w-full cursor-pointer hover:bg-sky-700 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md font-bold color-white"
             onClick={handleErrors}
           >
             Register
@@ -110,7 +111,7 @@ export default function RegisterComponent() {
         <p className="flex flex-wrap gap-2">
           Already have an account?{" "}
           <a
-            href="#"
+            href="/login"
             className="text-blue-500 active:text-violet-500 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md "
           >
             Sign In

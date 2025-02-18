@@ -51,8 +51,8 @@ export default function LoginComponent() {
   }
 
   return (
-    <div className="w-fit">
-      <form className="flex flex-col items-center  flex-wrap gap-3 p-10 rounded-3xl bg-slate-200  w-sm shadow-lg shadow-zinc-700">
+    <div className="w-fit m-auto flex items-center justify-center min-h-screen">
+      <form className="flex flex-col items-center  flex-wrap gap-3 p-10 rounded-3xl bg-slate-200  w-sm shadow-2xl shadow-zinc-500 border-slate-300 border-[1px]">
         <p className="text-3xl font-sans mb-3 antialiased font-bold text-gray-800">
           Login
         </p>
@@ -92,7 +92,7 @@ export default function LoginComponent() {
         <p className="flex flex-wrap gap-2">
           No Account?{" "}
           <a
-            href="#"
+            href="/signup"
             className="text-blue-500 active:text-violet-500 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
           >
             Sign Up
