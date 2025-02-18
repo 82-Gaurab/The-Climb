@@ -1,3 +1,4 @@
+import Button from "../utility/Button";
 import { useState } from "react";
 
 export default function LoginComponent() {
@@ -83,12 +84,7 @@ export default function LoginComponent() {
             <span style={{ color: "red" }}>{passwordError}</span>
           )}
         </p>
-        <button
-          onClick={handleErrors}
-          className="bg-sky-500 pl-5 pr-5 pt-2 pb-2 text-white antialiased rounded-3xl w-full cursor-pointer hover:bg-sky-700 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md font-bold color-white"
-        >
-          Log In
-        </button>
+        <Button text={"Log In"} onClick={handleErrors} />
         <p className="flex flex-wrap gap-2">
           No Account?{" "}
           <a

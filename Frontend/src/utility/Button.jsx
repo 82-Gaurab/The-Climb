@@ -1,7 +1,12 @@
 /* eslint-disable react/prop-types */
-const Button = ({ text }) => {
+
+const Button = ({ text, onClick }) => {
   return (
-    <button className="bg-white text-gray-800 px-6 py-2 rounded-full shadow-lg hover:bg-blue-100 transition transform hover:scale-105 border-2 border-blue-200">
+    <button
+      className="bg-gray-200 w-full font-semibold text-gray-800 px-6 py-2 antialiased hover:font-bold hover:bg-sky-400 transform hover:text-stone-100 border-1 border-sky-400"
+      onClick={onClick}
+      style={{ transition: "all 0.35s ease-in", borderRadius: "10px" }}
+    >
       {text}
     </button>
   );

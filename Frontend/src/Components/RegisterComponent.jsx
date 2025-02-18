@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../utility/Button";
 
 export default function RegisterComponent() {
   const [email, setEmail] = useState("");
@@ -99,20 +100,22 @@ export default function RegisterComponent() {
           )}
         </p>
         <p className="w-full">
-          <button
+          {/* <button
             style={{ borderRadius: "20px" }}
             className="bg-sky-500 pl-5 pr-5 pt-2 pb-2 text-white antialiased w-full cursor-pointer hover:bg-sky-700 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md font-bold color-white"
             onClick={handleErrors}
           >
             Register
-          </button>
+          </button> */}
+          <Button text={"Register"} onClick={handleErrors} />
         </p>
 
         <p className="flex flex-wrap gap-2">
           Already have an account?{" "}
           <a
             href="/login"
-            className="text-blue-500 active:text-violet-500 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md "
+            className="text-blue-500 active:text-violet-500 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
+            style={{ textDecoration: "none" }}
           >
             Sign In
           </a>
