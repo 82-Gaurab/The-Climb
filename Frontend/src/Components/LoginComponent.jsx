@@ -53,7 +53,7 @@ export default function LoginComponent() {
 
   return (
     <div className="w-fit m-auto flex items-center justify-center min-h-screen">
-      <form className="flex flex-col items-center  flex-wrap gap-3 p-10 rounded-3xl bg-slate-200  w-sm shadow-2xl shadow-zinc-500 border-slate-300 border-[1px]">
+      <form className="flex flex-col items-center  flex-wrap gap-sm p-10 rounded-3xl bg-slate-200  w-sm shadow-2xl shadow-zinc-500 border-slate-300 border-[1px]">
         <p className="text-3xl font-sans mb-3 antialiased font-bold text-gray-800">
           Login
         </p>
