@@ -8,7 +8,7 @@ import mountain2 from "../assets/images/mountain2.jpg";
 import mountain3 from "../assets/images/mountain3.jpg";
 import mountain4 from "../assets/images/mountain4.jpg";
 import profilePic from "../assets/icon/user.png";
-import SocialContact from "../utility/SocialContact";
+import Footer from "../utility/Footer";
 
 export default function LandingPage() {
   const [isHovered, setIsHovered] = useState(false);
@@ -203,7 +203,6 @@ export default function LandingPage() {
                 ease. Let&apos;s take your trekking to new heights!
               </p>
             </li>
-            <li>logo</li>
           </ul>
         </div>
       </section>
@@ -226,7 +225,7 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer>
+      {/* <footer>
         <p>&copy; {new Date().getFullYear()} The Climb. All rights reserved.</p>
         <div className="flex justify-center space-x-4 mt-2">
           <a href="#" className="hover:text-gray-400">
@@ -242,7 +241,8 @@ export default function LandingPage() {
         <div className="contact-platform">
           <SocialContact />
         </div>
-      </footer>
+      </footer> */}
+      <Footer />
     </div>
   );
 }

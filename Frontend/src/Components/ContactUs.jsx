@@ -3,6 +3,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { useState } from "react";
 import { Mail, Phone } from "lucide-react";
 import "../Styles/ContactUs.css";
+import Footer from "../utility/Footer";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -136,6 +137,7 @@ const ContactUs = () => {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
+      <Footer />
     </div>
   );
 };

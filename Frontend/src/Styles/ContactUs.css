@@ -6,7 +6,6 @@
 html,
 body {
   background-image: url("../assets/images/pageBg.jpg");
-  background-repeat: round;
   background-position: center;
 }
 

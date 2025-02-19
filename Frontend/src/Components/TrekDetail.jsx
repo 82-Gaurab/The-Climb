@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import mountain1 from "../assets/images/mountain1.jpg";
+import Footer from "../utility/Footer";
 
 const TrekDetail = () => {
   //   const { id } = useParams();
@@ -191,6 +192,7 @@ const TrekDetail = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
