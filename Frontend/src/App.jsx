@@ -14,6 +14,8 @@ const Landing = React.lazy(() => import("./Components/LandingPage"));
 const Login = React.lazy(() => import("./Components/LoginComponent"));
 const Register = React.lazy(() => import("./Components/RegisterComponent"));
 const ContactUs = React.lazy(() => import("./Components/ContactUs"));
+const TrekDetail = React.lazy(() => import("./Components/TrekDetail"));
+const AddTrek = React.lazy(() => import("./Components/AddTrek"));
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/trekdetail" element={<TrekDetail />} />
+          <Route path="/addtrek" element={<AddTrek />} />
         </Routes>
       </Suspense>
     </Router>
