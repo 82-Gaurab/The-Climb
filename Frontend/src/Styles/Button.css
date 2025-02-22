@@ -1,11 +1,11 @@
 button {
-  background-image: url("../assets/images/mountMg.jpg");
+  /* background-image: url("../assets/images/mountMg.jpg");
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
   transition: all 0.35s ease-in;
   border-radius: 10px;
 }
 
-button:hover {
+/* button:hover {
   background-image: url("../assets/images/mountain4.jpg");
-}
+} */

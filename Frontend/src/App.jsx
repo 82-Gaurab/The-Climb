@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense } from "react";
 import "./App.css";
 import mountain_loading from "./assets/images/mountain-loading_gif.gif";
@@ -16,6 +17,14 @@ const Register = React.lazy(() => import("./Components/RegisterComponent"));
 const ContactUs = React.lazy(() => import("./Components/ContactUs"));
 const TrekDetail = React.lazy(() => import("./Components/TrekDetail"));
 const AddTrek = React.lazy(() => import("./Components/AddTrek"));
+const AdminDashboard = React.lazy(() => import("./Components/AdminDashboard"));
+const AdminTrekManagement = React.lazy(() =>
+  import("./Components/TrekManagement")
+);
+const AdminUserManagement = React.lazy(() =>
+  import("./Components/UserManagement")
+);
+const Sidebar = React.lazy(() => import("./utility/Sidebar"));
 
 function App() {
   return (
@@ -39,9 +48,15 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/trekdetail" element={<TrekDetail />} />
           <Route path="/addtrek" element={<AddTrek />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/sidebar" element={<Sidebar />} />
+          <Route path="/admin/trek" element={<AdminTrekManagement />} />
+          <Route path="/admin/user" element={<AdminUserManagement />} />
         </Routes>
       </Suspense>
     </Router>
+    // <TrekManagement />
+    // <AdminDashboard />
   );
 }
 

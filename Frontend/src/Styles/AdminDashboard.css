@@ -1,0 +1,92 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-navbar {
+  height: auto;
+  min-height: 100vh;
+  padding: 0;
+  flex: 0 1 auto;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* Headings */
+.heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* Table Styles */
+.table-container {
+  margin-top: 24px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f3f4f6;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-outline {
+  border: 1px solid #ddd;
+}
+
+.btn-destructive {
+  background-color: #e3342f;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #6b7280;
+  color: white;
+}
+
+/* Form */
+.form-container {
+  margin-top: 24px;
+}
+
+.form-container input,
+.form-container select {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.dashboard-container .dashboard-navbar .sidebar #dashboard a {
+  color: blueviolet;
+  font-weight: 700;
+}
+
+.dashboard-container .dashboard-navbar .sidebar #dashboard {
+  pointer-events: none;
+}

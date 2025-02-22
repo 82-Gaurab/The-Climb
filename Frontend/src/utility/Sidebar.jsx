@@ -1,31 +1,42 @@
-import { useState } from "react";
 import "../Styles/Sidebar.css";
 import { Menu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true);
-
+  const navigate = useNavigate();
   return (
     <div className="sidebar-container">
-      <button
-        className={`menu-button ${isOpen ? "open" : "closed"}`}
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <div className={"menu-button"}>
         <Menu size={24} />
-      </button>
-      <nav className={`sidebar ${isOpen ? "open" : "closed"}`}>
-        <ul>
-          <li>
-            <a href="#">Dashboard</a>
+      </div>
+      <nav className={"sidebar"}>
+        {/* <ul>
+          <li id="dashboard">
+            <a href="/admin">Dashboard</a>
           </li>
-          <li>
-            <a href="#">Users Management</a>
+          <li id="users">
+            <a href="/admin/user">Users Management</a>
           </li>
-          <li>
-            <a href="#">Trek Management</a>
+          <li id="treks">
+            <a href="/admin/trek">Trek Management</a>
           </li>
           <li>
             <a href="#">Logout</a>
+          </li>
+        </ul> */}
+        <ul>
+          <li onClick={() => navigate("/admin")} id="dashboard">
+            <a href="#">Dashboard</a>
+          </li>
+          <li onClick={() => navigate("/admin/user")} id="users">
+            <a href="#">Users Management</a>
+          </li>
+          <li onClick={() => navigate("/admin/trek")} id="treks">
+            <a href="#">Trek Management</a>
+          </li>
+          <li>
+            <button>Logout</button>
           </li>
         </ul>
       </nav>
