@@ -1,6 +1,8 @@
 import Button from "../utility/Button";
 import { useState } from "react";
 
+import "../Styles/Login.css";
+
 export default function LoginComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +55,7 @@ export default function LoginComponent() {
 
   return (
     <div className="w-fit m-auto flex items-center justify-center min-h-screen">
-      <form className="flex flex-col items-center  flex-wrap gap-sm p-10 rounded-3xl bg-slate-200  w-sm shadow-2xl shadow-zinc-500 border-slate-300 border-[1px]">
+      <form className="flex flex-col items-center flex-wrap gap-sm p-10 rounded-3xl w-sm shadow-2xl shadow-zinc-500 border-slate-300 border-[1px]">
         <p className="text-3xl font-sans mb-3 antialiased font-bold text-gray-800">
           Login
         </p>
@@ -90,6 +92,7 @@ export default function LoginComponent() {
           <a
             href="/signup"
             className="text-blue-500 active:text-violet-500 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
+            style={{ textDecoration: "none" }}
           >
             Sign Up
           </a>

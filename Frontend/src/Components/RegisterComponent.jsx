@@ -37,7 +37,7 @@ export default function RegisterComponent() {
   };
   return (
     <div className="w-fit m-auto flex items-center justify-center min-h-screen ">
-      <form className="flex flex-col items-center  flex-wrap gap-sm pt-10 pr-10 pl-10 pb4 rounded-3xl bg-slate-200  w-lg shadow-2xl shadow-zinc-500 border-slate-300 border-[1px]">
+      <form className="flex flex-col items-center  flex-wrap gap-sm pt-10 pr-10 pl-10 pb4 rounded-3xl w-lg shadow-2xl shadow-zinc-500 border-slate-300 border-[1px]">
         <p className="text-3xl font-sans mb-3 antialiased font-bold text-gray-800">
           Register
         </p>
