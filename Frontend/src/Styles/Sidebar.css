@@ -1,0 +1,68 @@
+/* Sidebar.css */
+.sidebar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.menu-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu-button.open {
+  color: white;
+}
+
+.menu-button.closed {
+  color: black;
+}
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #1a202c;
+  color: white;
+  padding: 20px 10px;
+  transition: transform 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.sidebar ul li {
+  padding: 15px 0;
+  font-size: 18px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.sidebar ul li:hover {
+  background-color: #27282a;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  color: #63b3ed;
+}
