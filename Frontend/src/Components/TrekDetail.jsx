@@ -9,11 +9,17 @@ import {
   Users,
   Mail,
 } from "lucide-react";
+import { useForm } from "react-hook-form";
 
 import mountain1 from "../assets/images/mountain1.jpg";
 import Footer from "../utility/Footer";
 
 const TrekDetail = () => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   //   const { id } = useParams();
 
   // This would typically come from an API/database
@@ -134,12 +140,13 @@ const TrekDetail = () => {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
               <h3 className="text-xl font-bold mb-4">Book This Trek</h3>
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name
                   </label>
                   <input
+                    {...register("fullName")}
                     type="text"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -149,6 +156,7 @@ const TrekDetail = () => {
                     Email
                   </label>
                   <input
+                    {...register("email")}
                     type="email"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -158,6 +166,7 @@ const TrekDetail = () => {
                     Phone
                   </label>
                   <input
+                    {...register("phone")}
                     type="tel"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -167,6 +176,7 @@ const TrekDetail = () => {
                     Number of People
                   </label>
                   <input
+                    {...register("numberOfPeople")}
                     type="number"
                     min="1"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -177,6 +187,7 @@ const TrekDetail = () => {
                     Message
                   </label>
                   <textarea
+                    {...register("message")}
                     rows={4}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></textarea>

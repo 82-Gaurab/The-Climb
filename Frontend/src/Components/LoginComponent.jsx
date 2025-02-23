@@ -1,7 +1,9 @@
 import Button from "../utility/Button";
 import { useState } from "react";
-
+import axios from "axios";
 import "../Styles/Login.css";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginComponent() {
   const [email, setEmail] = useState("");
@@ -9,6 +11,8 @@ export default function LoginComponent() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   function handleEmailChange(event) {
     setEmail(() => event.target.value);
@@ -22,34 +26,53 @@ export default function LoginComponent() {
     setError("");
   }
 
-  function handleErrors(event) {
+  async function handleErrors(event) {
     event.preventDefault();
-    let hasError = false;
-    if (email === "" || password === "") {
-      setError("All fields are required");
-      return;
-    }
+    // let hasError = false;
+    // if (email === "" || password === "") {
+    //   setError("All fields are required");
+    //   return;
+    // }
 
-    if (!email.includes("@")) {
-      setEmailError("Please enter a valid email address");
-      hasError = true;
-      return;
-    }
+    // if (!email.includes("@")) {
+    //   setEmailError("Please enter a valid email address");
+    //   hasError = true;
+    //   return;
+    // }
 
-    if (!email.includes(".")) {
-      setEmailError("Please enter a valid email address");
-      hasError = true;
-      return;
-    }
+    // if (!email.includes(".")) {
+    //   setEmailError("Please enter a valid email address");
+    //   hasError = true;
+    //   return;
+    // }
 
-    if (password.length < 8) {
-      setPasswordError("Password must be at least 8 characters long");
-      hasError = true;
-      return;
-    }
+    // if (password.length < 8) {
+    //   setPasswordError("Password must be at least 8 characters long");
+    //   hasError = true;
+    //   return;
+    // }
 
-    if (!hasError) {
-      alert(`Email: ${email} , Password: ${password}`);
+    // alert(`Email: ${email} , Password: ${password}`);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+
+      console.log("Logged in", response);
+
+      if (response.data && response.data.data.access_token) {
+        localStorage.setItem("token", response.data.data.access_token); // ✅ Store Token
+      }
+      toast.success("Logged in successfully!");
+
+      navigate("/admin");
+    } catch (error) {
+      console.log(error);
     }
   }
 

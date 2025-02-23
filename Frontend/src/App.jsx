@@ -11,6 +11,9 @@ import {
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import "react-toastify/dist/ReactToastify.css";
+import ProtectedRoute from "./Components/ProtectedRoute";
+
 const Landing = React.lazy(() => import("./Components/LandingPage"));
 const Login = React.lazy(() => import("./Components/LoginComponent"));
 const Register = React.lazy(() => import("./Components/RegisterComponent"));
@@ -45,9 +48,12 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/trekdetail" element={<TrekDetail />} />
           <Route path="/addtrek" element={<AddTrek />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/sidebar" element={<Sidebar />} />
-          <Route path="/admin/trek" element={<AdminTrekManagement />} />
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/sidebar" element={<Sidebar />} />
+            <Route path="/admin/trek" element={<AdminTrekManagement />} />
+          </Route>
         </Routes>
       </Suspense>
     </Router>

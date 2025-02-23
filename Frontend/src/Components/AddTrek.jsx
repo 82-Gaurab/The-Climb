@@ -2,34 +2,104 @@ import { useState } from "react";
 import { PlusCircle, MinusCircle, Upload, Mountain } from "lucide-react";
 import TextareaAutosize from "react-textarea-autosize";
 import "../Styles/TrekForm.css";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const AddTrek = () => {
-  const [itinerary, setItinerary] = useState([{ title: "", description: "" }]);
+  const [formData, setFormData] = useState({
+    trek: "",
+    region: "",
+    duration: "",
+    difficulty: "Easy",
+    itinerary: [{ title: "", description: "" }],
+  });
 
-  const addDay = () => {
-    setItinerary([...itinerary, { title: "", description: "" }]);
-  };
+  const [image, setImage] = useState(null);
 
-  const removeDay = (index) => {
-    if (itinerary.length > 1) {
-      const newItinerary = itinerary.filter((_, i) => i !== index);
-      setItinerary(newItinerary);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const [fileName, setFileName] = useState("");
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setFileName(file.name);
     }
   };
 
-  const updateItinerary = (index, field, value) => {
-    const newItinerary = itinerary.map((day, i) => {
-      if (i === index) {
-        return { ...day, [field]: value };
-      }
-      return day;
-    });
-    setItinerary(newItinerary);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleItineraryChange = (index, field, value) => {
+    const newItinerary = formData.itinerary.map((day, i) =>
+      i === index ? { ...day, [field]: value } : day
+    );
+    setFormData({ ...formData, itinerary: newItinerary });
+  };
+
+  const addDay = () => {
+    setFormData({
+      ...formData,
+      itinerary: [...formData.itinerary, { title: "", description: "" }],
+    });
+  };
+
+  const removeDay = (index) => {
+    if (formData.itinerary.length > 1) {
+      const newItinerary = formData.itinerary.filter((_, i) => i !== index);
+      setFormData({ ...formData, itinerary: newItinerary });
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    console.log(formData);
+
+    try {
+      let imageUrl = "";
+
+      if (selectedFile) {
+        const data = new FormData(); // Create new FormData
+        data.append("file", selectedFile);
+
+        const uploadResponse = await axios.post(
+          "http://localhost:5000/api/file/upload",
+          data,
+          { headers: { "Content-Type": "multipart/form-data" } }
+        );
+
+        console.log("Upload Response:", uploadResponse.data);
+        imageUrl = "http://localhost:5000/" + uploadResponse.data.file.path;
+
+        setImage(imageUrl);
+        if (!imageUrl) {
+          throw new Error("File URL is missing from response");
+        }
+      }
+      const response = await axios.post("http://localhost:5000/api/trek", {
+        title: formData.trek,
+        region: formData.region,
+        duration: formData.duration,
+        difficulty: formData.difficulty,
+        image: imageUrl,
+      });
+      console.log("Trek added", response);
+      toast.success("Trek added successfully!");
+    } catch (error) {
+      console.log(error);
+    }
+
+    // try {
+    //   const response = await axios.post("http://localhost:5000/api/days", {
+    //     title: formData.itinerary.title,
+    //     region: formData.itinerary.description,
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   return (
@@ -46,7 +116,6 @@ const AddTrek = () => {
       <div className="trek-form-wrapper">
         <div className="trek-form-card">
           <form onSubmit={handleSubmit} className="trek-form">
-            {/* Basic Information */}
             <div className="section">
               <h2 className="section-title">Basic Information</h2>
               <div className="section-grid">
@@ -54,6 +123,9 @@ const AddTrek = () => {
                   <label className="input-label">Trek Name*</label>
                   <input
                     type="text"
+                    name="trek"
+                    value={formData.trek}
+                    onChange={handleChange}
                     required
                     className="input-field"
                     placeholder="e.g., Mount Everest Base Camp Trek"
@@ -63,6 +135,9 @@ const AddTrek = () => {
                   <label className="input-label">Region*</label>
                   <input
                     type="text"
+                    name="region"
+                    value={formData.region}
+                    onChange={handleChange}
                     required
                     className="input-field"
                     placeholder="e.g., Nepal, Himalayas"
@@ -72,33 +147,39 @@ const AddTrek = () => {
                   <label className="input-label">Duration</label>
                   <input
                     type="number"
+                    name="duration"
+                    value={formData.duration}
+                    onChange={handleChange}
                     required
                     className="input-field"
                     placeholder="14 (days)"
                     min={0}
                   />
                 </div>
-
                 <div className="input-group">
                   <label className="input-label">Difficulty</label>
-                  <select className="input-field">
-                    <option>Easy</option>
-                    <option>Moderate</option>
-                    <option>Hard</option>
+                  <select
+                    name="difficulty"
+                    className="input-field"
+                    value={formData.difficulty}
+                    onChange={handleChange}
+                  >
+                    <option value="easy">Easy</option>
+                    <option value="moderate"> Moderate</option>
+                    <option value="hard">Hard</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            {/* Itinerary Section */}
             <div className="section">
               <h2 className="section-title">Day-by-Day Itinerary</h2>
               <div className="itinerary-list">
-                {itinerary.map((day, index) => (
+                {formData.itinerary.map((day, index) => (
                   <div key={index} className="itinerary-item">
                     <div className="itinerary-header">
                       <h3 className="itinerary-title">Day {index + 1}</h3>
-                      {itinerary.length > 1 && (
+                      {formData.itinerary.length > 1 && (
                         <button
                           type="button"
                           onClick={() => removeDay(index)}
@@ -112,20 +193,26 @@ const AddTrek = () => {
                       <label className="input-label">Title*</label>
                       <input
                         type="text"
-                        required
                         value={day.title}
                         onChange={(e) =>
-                          updateItinerary(index, "title", e.target.value)
+                          handleItineraryChange(index, "title", e.target.value)
                         }
                         className="input-field"
                         placeholder="e.g., Arrival in Kathmandu"
                       />
                     </div>
-
                     <div className="input-group">
                       <label className="input-label">Description</label>
                       <TextareaAutosize
                         className="input-field"
+                        value={day.description}
+                        onChange={(e) =>
+                          handleItineraryChange(
+                            index,
+                            "description",
+                            e.target.value
+                          )
+                        }
                         placeholder="Arrive in Kathmandu, transfer to hotel, and trek briefing"
                         minRows={3}
                         maxRows={5}
@@ -139,7 +226,6 @@ const AddTrek = () => {
               </div>
             </div>
 
-            {/* Trek Images */}
             <div className="section">
               <h2 className="section-title">Trek Images</h2>
               <div className="upload-box">
@@ -148,6 +234,7 @@ const AddTrek = () => {
                   <label htmlFor="file-upload" className="upload-label">
                     <span>Upload trek images</span>
                     <input
+                      onChange={handleImageUpload}
                       id="file-upload"
                       name="file-upload"
                       type="file"
@@ -162,7 +249,6 @@ const AddTrek = () => {
               </div>
             </div>
 
-            {/* Submit Button */}
             <div className="submit-container">
               <button type="submit" className="submit-btn">
                 Add Trek
