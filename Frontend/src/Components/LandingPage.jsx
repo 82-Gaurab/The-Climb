@@ -150,14 +150,14 @@ export default function LandingPage() {
       <section className="heroSection">
         <div className="navigation">
           <ul>
-            <li>Home</li>
-            <li>Treks</li>
-            <li>Contact Us</li>
-          </ul>
-
-          <ul>
             <li>
-              <button>Login</button>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/treks">Treks</a>
+            </li>
+            <li>
+              <a href="/contact">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -224,24 +224,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      {/* <footer>
-        <p>&copy; {new Date().getFullYear()} The Climb. All rights reserved.</p>
-        <div className="flex justify-center space-x-4 mt-2">
-          <a href="#" className="hover:text-gray-400">
-            Privacy Policy
-          </a>
-          <a href="#" className="hover:text-gray-400">
-            Terms of Service
-          </a>
-          <a href="#" className="hover:text-gray-400">
-            Contact
-          </a>
-        </div>
-        <div className="contact-platform">
-          <SocialContact />
-        </div>
-      </footer> */}
       <Footer />
     </div>
   );

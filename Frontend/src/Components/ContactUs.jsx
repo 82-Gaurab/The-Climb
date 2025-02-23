@@ -26,14 +26,14 @@ const ContactUs = () => {
 
   return (
     <div>
-      <div className="hero-section">
+      <section className="hero-section">
         <div className="hs-content">
           <h1>Contact Us</h1>
           <p>Get in touch with our team</p>
         </div>
-      </div>
+      </section>
 
-      <div className="contact-container">
+      <section className="contact-container">
         {/* Contact Content */}
         <div className="contact-content">
           {/* Contact Information */}
@@ -122,10 +122,10 @@ const ContactUs = () => {
 
           <Button text={"Send Message"} />
         </form>
-      </div>
+      </section>
 
       {/* Location embedded */}
-      <div className="location">
+      <section className="location">
         <h1>Our Location</h1>
         <iframe
           className="location-map"
@@ -136,7 +136,7 @@ const ContactUs = () => {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
-      </div>
+      </section>
       <Footer />
     </div>
   );

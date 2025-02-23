@@ -5,6 +5,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-content">
+        <p id="title">Quick Navigation</p>
         <div className="flex justify-center gap-2 font-semibold">
           <a href="/" className="hover:text-gray-400">
             Home
@@ -16,12 +17,11 @@ export default function Footer() {
             Contact Us
           </a>
         </div>
-        <p className="font-semibold">
-          &copy; 2025 The Climb. All Rights Reserved.
-        </p>
       </div>
+      <p className="font-semibold">
+        &copy; 2025 The Climb. All Rights Reserved.
+      </p>
       <div className="contact-platform">
-        <p>Quick Navigation</p>
         <SocialContact />
       </div>
     </footer>

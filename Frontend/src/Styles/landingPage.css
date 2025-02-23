@@ -4,6 +4,17 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
 html,
 body {
   margin: 0;
@@ -79,7 +90,6 @@ body {
 
 .heroSection .navigation {
   display: flex;
-  justify-content: space-between;
   padding-right: 20px;
   padding-top: 10px;
 }
@@ -95,6 +105,10 @@ body {
   font-weight: 500;
 }
 
+.navigation ul li {
+  cursor: pointer;
+}
+
 /* Trek Lists */
 
 .popular-treks,
@@ -104,6 +118,10 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 30vh;
+
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 45%;
 }
 
 .popular-treks h1,
@@ -136,6 +154,11 @@ body {
 }
 
 /* ABOUT US */
+
+.about-us {
+  margin-bottom: 30vh;
+}
+
 .about-us .content {
   background-image: url("../assets/images/trekking.jpg");
   background-repeat: no-repeat;
