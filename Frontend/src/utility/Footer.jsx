@@ -21,6 +21,7 @@ export default function Footer() {
         </p>
       </div>
       <div className="contact-platform">
+        <p>Quick Navigation</p>
         <SocialContact />
       </div>
     </footer>

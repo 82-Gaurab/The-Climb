@@ -198,3 +198,37 @@ const TrekDetail = () => {
 };
 
 export default TrekDetail;
+
+// const TrekDetail = ({ trek }) => {
+//   if (!trek) {
+//     return <p className="text-center text-gray-500">No trek selected</p>;
+//   }
+
+//   return (
+//     <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+//       <h2 className="text-2xl font-bold mb-4">{trek.name}</h2>
+//       <img
+//         src={trek.image}
+//         alt={trek.name}
+//         className="w-full h-64 object-cover rounded-lg mb-4"
+//       />
+//       <p className="text-gray-700 mb-2">
+//         <strong>Region:</strong> {trek.region}
+//       </p>
+//       <p className="text-gray-700 mb-2">
+//         <strong>Duration:</strong> {trek.duration} days
+//       </p>
+//       <p className="text-gray-700 mb-2">
+//         <strong>Difficulty:</strong> {trek.difficulty}
+//       </p>
+//       <p className="text-gray-700 mb-2">
+//         <strong>Best Season:</strong> {trek.bestSeason}
+//       </p>
+//       <p className="text-gray-700 mb-4">
+//         <strong>Description:</strong> {trek.description}
+//       </p>
+//     </div>
+//   );
+// };
+
+// export default TrekDetail;

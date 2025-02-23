@@ -209,58 +209,6 @@ export default function AdminDashboard() {
           selectableRows
           highlightOnHover
         />
-
-        {/* Treks Table */}
-        <div className="table-container">
-          <h2 className="heading">Treks</h2>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Trek ID</th>
-                <th>Name</th>
-                <th>Difficulty</th>
-                <th>Region</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {treks.map((trek) => (
-                <tr key={trek.id}>
-                  <td>{trek.id}</td>
-                  <td>{trek.name}</td>
-                  <td>{trek.difficulty}</td>
-                  <td>{trek.region}</td>
-                  <td>{trek.status}</td>
-                  <td>
-                    <button className="btn btn-outline">Edit</button>
-                    <button className="btn btn-destructive">Delete</button>
-                    <button className="btn btn-secondary">Favorite</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Add New Trek Form */}
-        <div className="form-container">
-          <h2 className="heading">Add New Trek</h2>
-          <form>
-            <input placeholder="Trek Name" />
-            <input placeholder="Region" />
-            <input placeholder="Duration (days)" type="number" />
-            <select>
-              <option>Easy</option>
-              <option>Moderate</option>
-              <option>Hard</option>
-            </select>
-            <input placeholder="Best Season" />
-            <input placeholder="Description" />
-            <input type="file" />
-            <button className="btn">Submit</button>
-          </form>
-        </div>
       </div>
     </div>
   );

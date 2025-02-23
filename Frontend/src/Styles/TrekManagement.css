@@ -10,14 +10,18 @@
   flex: 0 1 auto;
 }
 
-.table-container {
+.trek-main-content {
   flex: 1;
   padding: 24px;
   overflow-y: auto;
   height: 100vh;
 }
 
-.trek-management-container .sidebar #treks a {
+.trek-main-content .table-container {
+  margin-bottom: 5vh;
+}
+
+.trek-management-container .sidebar #treks p {
   color: blueviolet;
   font-weight: 700;
 }

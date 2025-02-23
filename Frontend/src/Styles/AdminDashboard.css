@@ -82,7 +82,7 @@
   border-radius: 4px;
 }
 
-.dashboard-container .dashboard-navbar .sidebar #dashboard a {
+.dashboard-container .dashboard-navbar .sidebar #dashboard p {
   color: blueviolet;
   font-weight: 700;
 }

@@ -5,6 +5,7 @@ import "../Styles/TrekManagement.css";
 import DataTable from "react-data-table-component";
 import Button from "../utility/Button";
 import Sidebar from "../utility/Sidebar";
+import AddTrek from "./AddTrek";
 
 function ActionButtons({ trekId }) {
   return (
@@ -88,15 +89,19 @@ export default function TrekManagement() {
         <Sidebar />
       </div>
 
-      {/* Treks Table */}
-      <div className="table-container">
-        <DataTable
-          title="Trek List"
-          columns={columns}
-          data={treks}
-          pagination
-          highlightOnHover
-        />
+      <div className="trek-main-content">
+        {/* Treks Table */}
+        <div className="table-container">
+          <DataTable
+            title="Trek List"
+            columns={columns}
+            data={treks}
+            pagination
+            highlightOnHover
+          />
+        </div>
+
+        <AddTrek />
       </div>
     </div>
   );

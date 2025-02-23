@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { PlusCircle, MinusCircle, Upload, Mountain } from "lucide-react";
+import TextareaAutosize from "react-textarea-autosize";
+import "../Styles/TrekForm.css";
 
 const AddTrek = () => {
   const [itinerary, setItinerary] = useState([{ title: "", description: "" }]);
@@ -31,138 +33,138 @@ const AddTrek = () => {
   };
 
   return (
-    <div className="pt-16 min-h-screen bg-gray-50">
-      <div className="relative h-48 bg-blue-600">
-        <div className="absolute inset-0">
-          <div className="h-full bg-gradient-to-r from-blue-600 to-blue-800"></div>
-        </div>
-        <div className="relative h-full flex items-center justify-center">
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-4">
-              <Mountain className="h-12 w-12 text-white" />
-            </div>
-            <h1 className="text-3xl font-bold text-white">Add New Trek</h1>
+    <div className="trek-form-container">
+      <div className="trek-header">
+        <div className="trek-header-content">
+          <div className="trek-header-icon">
+            <Mountain className="icon" />
           </div>
+          <h1 className="trek-title">Add New Trek</h1>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white rounded-lg shadow-sm p-8">
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="space-y-6">
-              <h2 className="text-xl font-semibold border-b pb-2">
-                Basic Information
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Trek Name*
-                  </label>
+      <div className="trek-form-wrapper">
+        <div className="trek-form-card">
+          <form onSubmit={handleSubmit} className="trek-form">
+            {/* Basic Information */}
+            <div className="section">
+              <h2 className="section-title">Basic Information</h2>
+              <div className="section-grid">
+                <div className="input-group">
+                  <label className="input-label">Trek Name*</label>
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="input-field"
                     placeholder="e.g., Mount Everest Base Camp Trek"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Region*
-                  </label>
+                <div className="input-group">
+                  <label className="input-label">Region*</label>
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="input-field"
                     placeholder="e.g., Nepal, Himalayas"
                   />
+                </div>
+                <div className="input-group">
+                  <label className="input-label">Duration</label>
+                  <input
+                    type="number"
+                    required
+                    className="input-field"
+                    placeholder="14 (days)"
+                    min={0}
+                  />
+                </div>
+
+                <div className="input-group">
+                  <label className="input-label">Difficulty</label>
+                  <select className="input-field">
+                    <option>Easy</option>
+                    <option>Moderate</option>
+                    <option>Hard</option>
+                  </select>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-xl font-semibold border-b pb-2">
-                Day-by-Day Itinerary
-              </h2>
-              <div className="space-y-4">
+            {/* Itinerary Section */}
+            <div className="section">
+              <h2 className="section-title">Day-by-Day Itinerary</h2>
+              <div className="itinerary-list">
                 {itinerary.map((day, index) => (
-                  <div key={index} className="p-4 border rounded-lg bg-gray-50">
-                    <div className="flex justify-between items-center mb-4">
-                      <h3 className="text-lg font-medium">Day {index + 1}</h3>
+                  <div key={index} className="itinerary-item">
+                    <div className="itinerary-header">
+                      <h3 className="itinerary-title">Day {index + 1}</h3>
                       {itinerary.length > 1 && (
                         <button
                           type="button"
                           onClick={() => removeDay(index)}
-                          className="text-red-600 hover:text-red-800"
+                          className="remove-day-btn"
                         >
-                          <MinusCircle className="h-5 w-5" />
+                          <MinusCircle className="icon-sm" />
                         </button>
                       )}
                     </div>
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Title*
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={day.title}
-                          onChange={(e) =>
-                            updateItinerary(index, "title", e.target.value)
-                          }
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          placeholder="e.g., Arrival in Kathmandu"
-                        />
-                      </div>
+                    <div className="input-group">
+                      <label className="input-label">Title*</label>
+                      <input
+                        type="text"
+                        required
+                        value={day.title}
+                        onChange={(e) =>
+                          updateItinerary(index, "title", e.target.value)
+                        }
+                        className="input-field"
+                        placeholder="e.g., Arrival in Kathmandu"
+                      />
+                    </div>
+
+                    <div className="input-group">
+                      <label className="input-label">Description</label>
+                      <TextareaAutosize
+                        className="input-field"
+                        placeholder="Arrive in Kathmandu, transfer to hotel, and trek briefing"
+                        minRows={3}
+                        maxRows={5}
+                      />
                     </div>
                   </div>
                 ))}
-                <button
-                  type="button"
-                  onClick={addDay}
-                  className="flex items-center text-blue-600 hover:text-blue-800"
-                >
-                  <PlusCircle className="h-5 w-5 mr-2" /> Add Another Day
+                <button type="button" onClick={addDay} className="add-day-btn">
+                  <PlusCircle className="icon-sm" /> Add Another Day
                 </button>
               </div>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-xl font-semibold border-b pb-2">
-                Trek Images
-              </h2>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6">
-                <div className="text-center">
-                  <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <div className="text-sm text-gray-600">
-                    <label
-                      htmlFor="file-upload"
-                      className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500"
-                    >
-                      <span>Upload trek images</span>
-                      <input
-                        id="file-upload"
-                        name="file-upload"
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        className="sr-only"
-                      />
-                    </label>
-                    <p className="pl-1">or drag and drop</p>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-2">
-                    PNG, JPG, GIF up to 10MB each
-                  </p>
+            {/* Trek Images */}
+            <div className="section">
+              <h2 className="section-title">Trek Images</h2>
+              <div className="upload-box">
+                <Upload className="upload-icon" />
+                <div className="upload-text">
+                  <label htmlFor="file-upload" className="upload-label">
+                    <span>Upload trek images</span>
+                    <input
+                      id="file-upload"
+                      name="file-upload"
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      className="hidden"
+                    />
+                  </label>
+                  <p>or drag and drop</p>
                 </div>
+                <p className="upload-hint">PNG, JPG, GIF up to 10MB each</p>
               </div>
             </div>
 
-            <div className="flex justify-end">
-              <button
-                type="submit"
-                className="bg-blue-600 text-white py-3 px-8 rounded-md hover:bg-blue-700 transition duration-300"
-              >
+            {/* Submit Button */}
+            <div className="submit-container">
+              <button type="submit" className="submit-btn">
                 Add Trek
               </button>
             </div>

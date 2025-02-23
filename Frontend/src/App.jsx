@@ -19,10 +19,7 @@ const TrekDetail = React.lazy(() => import("./Components/TrekDetail"));
 const AddTrek = React.lazy(() => import("./Components/AddTrek"));
 const AdminDashboard = React.lazy(() => import("./Components/AdminDashboard"));
 const AdminTrekManagement = React.lazy(() =>
-  import("./Components/TrekManagement")
-);
-const AdminUserManagement = React.lazy(() =>
-  import("./Components/UserManagement")
+  import("./Components/AdminTrekManagement")
 );
 const Sidebar = React.lazy(() => import("./utility/Sidebar"));
 
@@ -51,7 +48,6 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/admin/trek" element={<AdminTrekManagement />} />
-          <Route path="/admin/user" element={<AdminUserManagement />} />
         </Routes>
       </Suspense>
     </Router>
