@@ -15,7 +15,7 @@ export default function TrekCard({ trek }) {
             {/* Trek title*/}
             <div className="flex items-center m-2 gap-2">
               <span className="font-bold">Location:</span>
-              <span className="text-gray-600">{trek.location}</span>
+              <span className="text-gray-600">{trek.region}</span>
             </div>
             <div className="flex items-center mb-4 m-2 gap-2">
               <span className="font-bold">Duration:</span>

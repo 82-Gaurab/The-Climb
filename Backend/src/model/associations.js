@@ -1,12 +1,12 @@
 
 const Users = require("./userSchema");
 const trek = require("./trekSchema");
-const days = require("./daySchema");
+// const days = require("./daySchema");
 const trekRequest = require("./requestSchema");
 
 
-trek.hasMany(days, { foreignKey: "trekId" });
-days.belongsTo(trek, { foreignKey: "trekId" });
+// trek.hasMany(days, { foreignKey: "trekId" });
+// days.belongsTo(trek, { foreignKey: "trekId" });
 
 trekRequest.belongsTo(trek, { foreignKey: "trekId" });
 trek.hasOne(trekRequest, { foreignKey: "trekId" });
@@ -19,6 +19,6 @@ Users.hasMany(trekRequest, { foreignKey: "userId" });
 module.exports = {
   Users,
   trek,
-  days,
+  // days,
   trekRequest
 };

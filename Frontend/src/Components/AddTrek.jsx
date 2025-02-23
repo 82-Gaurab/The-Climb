@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { PlusCircle, MinusCircle, Upload, Mountain } from "lucide-react";
 import TextareaAutosize from "react-textarea-autosize";
@@ -33,26 +34,26 @@ const AddTrek = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleItineraryChange = (index, field, value) => {
-    const newItinerary = formData.itinerary.map((day, i) =>
-      i === index ? { ...day, [field]: value } : day
-    );
-    setFormData({ ...formData, itinerary: newItinerary });
-  };
+  // const handleItineraryChange = (index, field, value) => {
+  //   const newItinerary = formData.itinerary.map((day, i) =>
+  //     i === index ? { ...day, [field]: value } : day
+  //   );
+  //   setFormData({ ...formData, itinerary: newItinerary });
+  // };
 
-  const addDay = () => {
-    setFormData({
-      ...formData,
-      itinerary: [...formData.itinerary, { title: "", description: "" }],
-    });
-  };
+  // const addDay = () => {
+  //   setFormData({
+  //     ...formData,
+  //     itinerary: [...formData.itinerary, { title: "", description: "" }],
+  //   });
+  // };
 
-  const removeDay = (index) => {
-    if (formData.itinerary.length > 1) {
-      const newItinerary = formData.itinerary.filter((_, i) => i !== index);
-      setFormData({ ...formData, itinerary: newItinerary });
-    }
-  };
+  // const removeDay = (index) => {
+  //   if (formData.itinerary.length > 1) {
+  //     const newItinerary = formData.itinerary.filter((_, i) => i !== index);
+  //     setFormData({ ...formData, itinerary: newItinerary });
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -172,7 +173,7 @@ const AddTrek = () => {
               </div>
             </div>
 
-            <div className="section">
+            {/* <div className="section">
               <h2 className="section-title">Day-by-Day Itinerary</h2>
               <div className="itinerary-list">
                 {formData.itinerary.map((day, index) => (
@@ -224,7 +225,7 @@ const AddTrek = () => {
                   <PlusCircle className="icon-sm" /> Add Another Day
                 </button>
               </div>
-            </div>
+            </div> */}
 
             <div className="section">
               <h2 className="section-title">Trek Images</h2>

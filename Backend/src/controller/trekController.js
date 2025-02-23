@@ -15,16 +15,7 @@ const create = async (req, res) => {
 
 const getAllTrek = async (req, res) => {
     try{
-        const treks = await trek.findAll(
-            {
-                include: [
-                    {
-                        model: days,
-                        as: 'days'
-                    },
-                ]
-            }
-        );
+        const treks = await trek.findAll();
         res.json(treks);
         
     }catch (error) {
