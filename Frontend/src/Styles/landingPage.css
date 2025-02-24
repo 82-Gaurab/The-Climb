@@ -111,8 +111,7 @@ body {
 
 /* Trek Lists */
 
-.popular-treks,
-.latest-treks,
+.featured-treks,
 .reviews,
 .agencies {
   display: flex;
@@ -124,16 +123,14 @@ body {
   animation-range: entry 0% cover 45%;
 }
 
-.popular-treks h1,
-.latest-treks h1,
+.featured-treks h1,
 .reviews h1 {
   font-weight: bolder;
   font-size: 42px;
   margin-bottom: 30px;
 }
 
-.popular-treks .trek-list,
-.latest-treks .trek-list,
+.featured-treks .trek-list,
 .agencies .agency-list {
   display: flex;
   gap: 40px;

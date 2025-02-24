@@ -18,7 +18,7 @@ const trek  = sequelize.define("trek", {
         allowNull: false
     },
     difficulty: {
-        type: DataTypes.ENUM('easy', 'moderate', 'hard'),
+        type: DataTypes.ENUM('Easy', 'Moderate', 'Hard'),
         allowNull: false
     },
     duration: {

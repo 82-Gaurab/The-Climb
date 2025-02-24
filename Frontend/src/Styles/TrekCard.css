@@ -1,0 +1,82 @@
+.trekCard-container {
+  max-width: 400px;
+  min-width: 300px;
+  margin: 12px auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.trek-card {
+  color: hsl(0, 1%, 15%);
+  width: 370px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.306);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trek-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.trek-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.trek-card-content {
+  padding: 16px;
+}
+
+.trek-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #172b53;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}
+
+.trek-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.trek-label {
+  font-weight: bold;
+}
+
+.trek-value {
+  color: #4a5568;
+}
+
+.trek-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-right: 10px;
+}
+
+.trek-price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.trek-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin: 8px;
+}
+
+.trek-button:hover {
+  background-color: #1e40af;
+}

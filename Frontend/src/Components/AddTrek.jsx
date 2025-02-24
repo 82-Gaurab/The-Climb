@@ -190,9 +190,9 @@ const AddTrek = () => {
                     value={formData.difficulty}
                     onChange={handleChange}
                   >
-                    <option value="easy">Easy</option>
-                    <option value="moderate"> Moderate</option>
-                    <option value="hard">Hard</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Moderate"> Moderate</option>
+                    <option value="Hard">Hard</option>
                   </select>
                 </div>
               </div>
