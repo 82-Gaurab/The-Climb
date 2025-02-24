@@ -199,8 +199,8 @@ export default function LandingPage() {
               <p>
                 Welcome to Mountain Treks Management, your go-to platform for
                 planning and managing unforgettable mountain treks. Explore top
-                treks, add your own itineraries, and manage your adventures with
-                ease. Let&apos;s take your trekking to new heights!
+                treks and manage your adventures with ease. Let&apos;s take your
+                trekking to new heights!
               </p>
             </li>
           </ul>

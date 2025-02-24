@@ -12,8 +12,10 @@ const AddTrek = () => {
     region: "",
     duration: "",
     difficulty: "Easy",
-    itinerary: [{ title: "", description: "" }],
+    price: 0,
   });
+
+  const [previewImage, setPreviewImage] = useState(null);
 
   const [image, setImage] = useState(null);
 
@@ -26,6 +28,7 @@ const AddTrek = () => {
     if (file) {
       setSelectedFile(file);
       setFileName(file.name);
+      setPreviewImage(URL.createObjectURL(file));
     }
   };
 
@@ -61,6 +64,13 @@ const AddTrek = () => {
 
     try {
       let imageUrl = "";
+      const token = localStorage.getItem("token");
+      console.log(token);
+
+      if (!token) {
+        toast.error("Unauthorized: No token found");
+        return;
+      }
 
       if (selectedFile) {
         const data = new FormData(); // Create new FormData
@@ -69,7 +79,12 @@ const AddTrek = () => {
         const uploadResponse = await axios.post(
           "http://localhost:5000/api/file/upload",
           data,
-          { headers: { "Content-Type": "multipart/form-data" } }
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         console.log("Upload Response:", uploadResponse.data);
@@ -80,13 +95,23 @@ const AddTrek = () => {
           throw new Error("File URL is missing from response");
         }
       }
-      const response = await axios.post("http://localhost:5000/api/trek", {
-        title: formData.trek,
-        region: formData.region,
-        duration: formData.duration,
-        difficulty: formData.difficulty,
-        image: imageUrl,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/addTrek",
+        {
+          title: formData.trek,
+          region: formData.region,
+          duration: formData.duration,
+          difficulty: formData.difficulty,
+          price: formData.price,
+          image: imageUrl,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include token
+          },
+        }
+      );
       console.log("Trek added", response);
       toast.success("Trek added successfully!");
     } catch (error) {
@@ -173,59 +198,19 @@ const AddTrek = () => {
               </div>
             </div>
 
-            {/* <div className="section">
-              <h2 className="section-title">Day-by-Day Itinerary</h2>
-              <div className="itinerary-list">
-                {formData.itinerary.map((day, index) => (
-                  <div key={index} className="itinerary-item">
-                    <div className="itinerary-header">
-                      <h3 className="itinerary-title">Day {index + 1}</h3>
-                      {formData.itinerary.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => removeDay(index)}
-                          className="remove-day-btn"
-                        >
-                          <MinusCircle className="icon-sm" />
-                        </button>
-                      )}
-                    </div>
-                    <div className="input-group">
-                      <label className="input-label">Title*</label>
-                      <input
-                        type="text"
-                        value={day.title}
-                        onChange={(e) =>
-                          handleItineraryChange(index, "title", e.target.value)
-                        }
-                        className="input-field"
-                        placeholder="e.g., Arrival in Kathmandu"
-                      />
-                    </div>
-                    <div className="input-group">
-                      <label className="input-label">Description</label>
-                      <TextareaAutosize
-                        className="input-field"
-                        value={day.description}
-                        onChange={(e) =>
-                          handleItineraryChange(
-                            index,
-                            "description",
-                            e.target.value
-                          )
-                        }
-                        placeholder="Arrive in Kathmandu, transfer to hotel, and trek briefing"
-                        minRows={3}
-                        maxRows={5}
-                      />
-                    </div>
-                  </div>
-                ))}
-                <button type="button" onClick={addDay} className="add-day-btn">
-                  <PlusCircle className="icon-sm" /> Add Another Day
-                </button>
-              </div>
-            </div> */}
+            <div className="input-group">
+              <label className="input-label">Price (USD)</label>
+              <input
+                type="number"
+                name="price"
+                value={formData.price}
+                onChange={handleChange}
+                required
+                className="input-field"
+                placeholder="in USD"
+                min={0}
+              />
+            </div>
 
             <div className="section">
               <h2 className="section-title">Trek Images</h2>
@@ -244,10 +229,18 @@ const AddTrek = () => {
                       className="hidden"
                     />
                   </label>
-                  <p>or drag and drop</p>
                 </div>
                 <p className="upload-hint">PNG, JPG, GIF up to 10MB each</p>
               </div>
+              {previewImage && (
+                <div className="image-preview-container">
+                  <img
+                    src={previewImage}
+                    alt="Trek Preview"
+                    className="image-preview"
+                  />
+                </div>
+              )}
             </div>
 
             <div className="submit-container">

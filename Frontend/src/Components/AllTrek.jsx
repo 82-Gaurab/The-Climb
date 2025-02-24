@@ -58,7 +58,7 @@ export default function AllTrek() {
   useEffect(() => {
     const fetchTreks = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/trek"); // Adjust backend URL
+        const response = await axios.get("http://localhost:5000/api/getTrek"); // Adjust backend URL
         setTreks(response.data);
       } catch (err) {
         setError(err.message);

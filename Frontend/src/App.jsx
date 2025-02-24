@@ -46,7 +46,7 @@ function App() {
           <Route path="/signup" element={<Register />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/trekdetail" element={<TrekDetail />} />
-          <Route path="/trek" element={<Treks />} />
+          <Route path="/treks" element={<Treks />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<AdminDashboard />} />

@@ -18,11 +18,16 @@ const trek  = sequelize.define("trek", {
         allowNull: false
     },
     difficulty: {
-        type: DataTypes.ENUM('easy', 'medium', 'hard'),
+        type: DataTypes.ENUM('easy', 'moderate', 'hard'),
         allowNull: false
     },
     duration: {
         type: DataTypes.INTEGER,
+        allowNull: false
+    },
+
+    price: {
+        type: DataTypes.FLOAT,
         allowNull: false
     },
    
@@ -30,8 +35,6 @@ const trek  = sequelize.define("trek", {
         type: DataTypes.STRING,
         allowNull: false
     },
-
-
 });
 
 

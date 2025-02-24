@@ -10,7 +10,8 @@ const { authenticateToken } = require("./middleware/token-middleware");
 const router = require("./routes/uploadRoutes");
 const { createUploadsFolder } = require("./security/helper");
 
-const trekRouter = require("./routes/trekRoute");
+const trekAddRouter = require("./routes/trekAddRoute");
+const trekGetRouter = require("./routes/trekGetRoute");
 // const dayRouter = require("./routes/dayRoute");
 
 
@@ -22,8 +23,9 @@ app.use(cors());
 app.use("/uploads", express.static("uploads")); // Serve static files from the "uploads" directory
 createUploadsFolder();
 app.use(bodyParser.json());
-app.use("/api/trek", trekRouter);
+app.use("/api/getTrek", trekGetRouter);
 app.use(authenticateToken);
+app.use("/api/addTrek", trekAddRouter);
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/file", router);
