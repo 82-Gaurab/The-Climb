@@ -95,6 +95,18 @@ const AddTrek = () => {
       );
       console.log("Trek added", response);
       toast.success("Trek added successfully!");
+      setFormData({
+        trek: "",
+        region: "",
+        duration: "",
+        difficulty: "Easy",
+        price: 0,
+        description: "",
+      });
+      setSelectedFile(null);
+      setFileName("");
+      setPreviewImage(null);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

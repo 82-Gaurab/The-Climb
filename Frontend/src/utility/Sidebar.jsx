@@ -3,6 +3,17 @@ import { Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
+  const handleLogout = async () => {
+    try {
+      // Remove the token from local storage
+      localStorage.removeItem("token");
+
+      // Redirect the user to the login page or homepage after logout
+      window.location.href = "/"; // Replace with your actual login page path
+    } catch (err) {
+      console.error("Error logging out:", err);
+    }
+  };
   const navigate = useNavigate();
   return (
     <div className="sidebar-container">
@@ -18,7 +29,7 @@ export default function Sidebar() {
             <p>Trek Management</p>
           </li>
           <li>
-            <button>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
           </li>
         </ul>
       </nav>

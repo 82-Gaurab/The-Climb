@@ -8,51 +8,22 @@ import { useNavigate } from "react-router-dom";
 export default function LoginComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   function handleEmailChange(event) {
     setEmail(() => event.target.value);
-    setEmailError("");
     setError("");
   }
 
   function handlePasswordChange(event) {
     setPassword(() => event.target.value);
-    setPasswordError("");
     setError("");
   }
 
   async function handleErrors(event) {
     event.preventDefault();
-    // let hasError = false;
-    // if (email === "" || password === "") {
-    //   setError("All fields are required");
-    //   return;
-    // }
-
-    // if (!email.includes("@")) {
-    //   setEmailError("Please enter a valid email address");
-    //   hasError = true;
-    //   return;
-    // }
-
-    // if (!email.includes(".")) {
-    //   setEmailError("Please enter a valid email address");
-    //   hasError = true;
-    //   return;
-    // }
-
-    // if (password.length < 8) {
-    //   setPasswordError("Password must be at least 8 characters long");
-    //   hasError = true;
-    //   return;
-    // }
-
-    // alert(`Email: ${email} , Password: ${password}`);
 
     try {
       const response = await axios.post(
@@ -66,13 +37,21 @@ export default function LoginComponent() {
       console.log("Logged in", response);
 
       if (response.data && response.data.data.access_token) {
-        localStorage.setItem("token", response.data.data.access_token); // ✅ Store Token
+        localStorage.setItem("token", response.data.data.access_token);
+        toast.success("Logged in successfully!");
+        navigate("/admin");
       }
-      toast.success("Logged in successfully!");
-
-      navigate("/admin");
     } catch (error) {
-      console.log(error);
+      // Capture and display the error message from the backend
+      if (error.response && error.response.data) {
+        setError(error.response.data.message); // Display error from backend
+      } else {
+        setError("An unexpected error occurred. Please try again.");
+      }
+
+      toast.error(
+        error.response?.data?.message || "Login failed. Please try again."
+      );
     }
   }
 
@@ -82,7 +61,8 @@ export default function LoginComponent() {
         <p className="text-3xl font-sans mb-3 antialiased font-bold text-gray-800">
           Login
         </p>
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p className="text-red-500">{error}</p>}{" "}
+        {/* Display backend error here */}
         <p className="flex flex-col items-center w-full">
           <input
             type="email"
@@ -93,7 +73,6 @@ export default function LoginComponent() {
             placeholder="Enter Email Address"
             className="pl-2 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
           />
-          {emailError && <span style={{ color: "red" }}>{emailError}</span>}
         </p>
         <p className="flex flex-col items-center w-full">
           <input
@@ -105,9 +84,6 @@ export default function LoginComponent() {
             placeholder="Enter Password"
             className="pl-2 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
           />
-          {passwordError && (
-            <span style={{ color: "red" }}>{passwordError}</span>
-          )}
         </p>
         <Button text={"Log In"} onClick={handleErrors} />
         <p className="flex flex-wrap gap-2">

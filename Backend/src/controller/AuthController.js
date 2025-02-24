@@ -4,13 +4,18 @@ const { generateToken } = require("../security/jwt-util");
 const login = async (req, res) => {
   try {
     //fetching all the data from users table
+    const user = await User.findOne({ where: { email: req.body.email } });
     if (req.body.email == null) {
       return res.status(500).send({ message: "email is required" });
     }
-    if (req.body.password == null) {
-      return res.status(500).send({ message: "email is required" });
+    if (req.body.password == "") {
+      return res.status(500).send({ message: "password is required" });
     }
-    const user = await User.findOne({ where: { email: req.body.email } });
+    if (req.body.password != user.password) {
+      return res.status(500).send({ message: "Incorrect credentials" });
+    }
+
+
     if (!user) {
       return res.status(500).send({ message: "user not found" });
     }

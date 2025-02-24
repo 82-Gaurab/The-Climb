@@ -1,41 +1,39 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import "../Styles/TrekManagement.css";
+import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import Button from "../utility/Button";
 import Sidebar from "../utility/Sidebar";
 import AddTrek from "./AddTrek";
+import axios from "axios";
 
-function ActionButtons({ trekId }) {
-  return (
-    <div className="flex flex-wrap gap-2">
-      <Button
-        text={"Edit"}
-        onClick={() => alert(`Edit Clicked for ${trekId}`)}
-      />
-      <Button
-        text={"Delete"}
-        onClick={() => alert(`Delete Clicked for ${trekId}`)}
-      />
-      <Button
-        text={"Popular"}
-        onClick={() => alert(`Popular Clicked for ${trekId}`)}
-      />
-    </div>
-  );
-}
+import "../Styles/TrekManagement.css";
 
 export default function TrekManagement() {
+  const [treks, setTreks] = useState([]);
+
+  useEffect(() => {
+    const fetchTreks = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/getTrek");
+        setTreks(response.data);
+        console.log(`Data fetched: ${JSON.stringify(response.data.data)}`);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    fetchTreks();
+  }, []);
+
   const columns = [
     {
       name: "Trek ID",
-      selector: (row) => row.id,
+      selector: (row) => row.trekId,
       sortable: true,
     },
     {
       name: "Name",
-      selector: (row) => row.name,
+      selector: (row) => row.title,
       sortable: true,
     },
     {
@@ -49,40 +47,17 @@ export default function TrekManagement() {
       sortable: true,
     },
     {
-      name: "Status",
-      selector: (row) => row.status,
+      name: "Duration(days)",
+      selector: (row) => row.duration,
       sortable: true,
     },
     {
-      name: "Actions",
-      cell: (row) => (
-        <div className="action-buttons">
-          <ActionButtons trekId={row.id} />
-        </div>
-      ),
-      ignoreRowClick: true,
-      allowOverflow: true,
+      name: "Price ($)",
+      selector: (row) => row.price,
+      sortable: true,
     },
   ];
 
-  const [treks, setTreks] = useState([
-    {
-      id: 1,
-      name: "Everest Base Camp",
-      difficulty: "Hard",
-      region: "Solukhumbu",
-      status: "Popular",
-      action: <ActionButtons trekId={"1"} />,
-    },
-    {
-      id: 2,
-      name: "Annapurna Circuit",
-      difficulty: "Moderate",
-      region: "Annapurna",
-      status: "Not Popular",
-      action: <ActionButtons trekId={"2"} />,
-    },
-  ]);
   return (
     <div className="trek-management-container">
       <div className="trek-management-navbar">
@@ -93,11 +68,14 @@ export default function TrekManagement() {
         {/* Treks Table */}
         <div className="table-container">
           <DataTable
+            key={treks.trekId}
             title="Trek List"
             columns={columns}
-            data={treks}
+            data={treks} // Dynamically set users data
             pagination
             highlightOnHover
+            keyField="trekId" // Ensure this is the unique identifier
+            fixedHeader
           />
         </div>
 

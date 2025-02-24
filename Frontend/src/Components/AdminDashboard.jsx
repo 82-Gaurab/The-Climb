@@ -9,7 +9,6 @@ import axios from "axios";
 // Action Buttons Component
 const ActionButtons = ({ id, handleDelete }) => (
   <div className="flex gap-2">
-    <Button text="Edit" onClick={() => alert(`Edit user ${id}`)} />
     <Button text="Delete" onClick={() => handleDelete(id)} />
   </div>
 );
@@ -86,7 +85,6 @@ export default function AdminDashboard() {
           columns={columns}
           data={users} // Dynamically set users data
           pagination
-          selectableRows
           highlightOnHover
           keyField="userId" // Ensure this is the unique identifier
         />
