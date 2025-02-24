@@ -5,7 +5,7 @@ const { sequelize } = require("../database/db");
 const request = sequelize.define("requests", {
 
 
-    id: {
+    requestId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -23,7 +23,7 @@ const request = sequelize.define("requests", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    people:{
+    noOfPeople:{
         type: DataTypes.INTEGER,
         allowNull: false
     },
@@ -32,18 +32,17 @@ const request = sequelize.define("requests", {
         allowNull: false
     },
     
-    
  }, {
 
 });
 
-// (async () => {
-//     try {
-//       await request.sync();
-//       console.log("User table has been created");
-//     } catch (error) {
-//       console.log("Error: ", error.message);
-//     }
-//   })();
+(async () => {
+    try {
+      await request.sync();
+      console.log("Request table has been created");
+    } catch (error) {
+      console.log("Error: ", error.message);
+    }
+  })();
 
 module.exports = request;

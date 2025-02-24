@@ -13,6 +13,7 @@ const AddTrek = () => {
     duration: "",
     difficulty: "Easy",
     price: 0,
+    description: "",
   });
 
   const [previewImage, setPreviewImage] = useState(null);
@@ -36,27 +37,6 @@ const AddTrek = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  // const handleItineraryChange = (index, field, value) => {
-  //   const newItinerary = formData.itinerary.map((day, i) =>
-  //     i === index ? { ...day, [field]: value } : day
-  //   );
-  //   setFormData({ ...formData, itinerary: newItinerary });
-  // };
-
-  // const addDay = () => {
-  //   setFormData({
-  //     ...formData,
-  //     itinerary: [...formData.itinerary, { title: "", description: "" }],
-  //   });
-  // };
-
-  // const removeDay = (index) => {
-  //   if (formData.itinerary.length > 1) {
-  //     const newItinerary = formData.itinerary.filter((_, i) => i !== index);
-  //     setFormData({ ...formData, itinerary: newItinerary });
-  //   }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,6 +83,7 @@ const AddTrek = () => {
           duration: formData.duration,
           difficulty: formData.difficulty,
           price: formData.price,
+          description: formData.description,
           image: imageUrl,
         },
         {
@@ -209,6 +190,18 @@ const AddTrek = () => {
                 className="input-field"
                 placeholder="in USD"
                 min={0}
+              />
+            </div>
+            <div className="input-group">
+              <label className="input-label">Description:</label>
+              <TextareaAutosize
+                name="description" // Correctly reference the name
+                className="input-field"
+                value={formData.description} // Ensure the value is bound to formData.description
+                onChange={handleChange} // Handle change for the description
+                placeholder="This is a sample description. Replace with your trek's detailed description."
+                minRows={3}
+                maxRows={5}
               />
             </div>
 

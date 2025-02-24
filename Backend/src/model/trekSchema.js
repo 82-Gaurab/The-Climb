@@ -30,6 +30,11 @@ const trek  = sequelize.define("trek", {
         type: DataTypes.FLOAT,
         allowNull: false
     },
+
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
    
     image: {
         type: DataTypes.STRING,

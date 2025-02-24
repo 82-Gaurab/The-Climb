@@ -25,7 +25,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
+    <div className="h-fit">
       <section className="hero-section">
         <div className="hs-content">
           <h1>Contact Us</h1>

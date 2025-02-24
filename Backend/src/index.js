@@ -12,7 +12,7 @@ const { createUploadsFolder } = require("./security/helper");
 
 const trekAddRouter = require("./routes/trekAddRoute");
 const trekGetRouter = require("./routes/trekGetRoute");
-// const dayRouter = require("./routes/dayRoute");
+const requestRouter = require("./routes/requestRoute");
 
 
 dotenv.config();
@@ -24,6 +24,7 @@ app.use("/uploads", express.static("uploads")); // Serve static files from the "
 createUploadsFolder();
 app.use(bodyParser.json());
 app.use("/api/getTrek", trekGetRouter);
+app.use("/api/request", requestRouter);
 app.use(authenticateToken);
 app.use("/api/addTrek", trekAddRouter);
 app.use("/api/user", userRouter);

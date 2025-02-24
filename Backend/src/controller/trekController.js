@@ -33,8 +33,8 @@ const getTrekById = async (req, res) => {
       if (!trek) {
         return res.status(404).send({ message: "Trek not found" });
       }
-  
-      res.status(200).send({ data: trek });
+      const trekData = trek.toJSON();
+      res.status(200).send({ data: trekData });
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: "failed to fetch trek" });

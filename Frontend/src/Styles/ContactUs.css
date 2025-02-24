@@ -218,3 +218,7 @@ section {
   pointer-events: none;
   outline: none;
 }
+
+.Toastify {
+  display: none;
+}

@@ -168,7 +168,7 @@ export default function LandingPage() {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/treks">Treks</a>
+              <a href="/trekList">Treks</a>
             </li>
             <li>
               <a href="/contact">Contact Us</a>
