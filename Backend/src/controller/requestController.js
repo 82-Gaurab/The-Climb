@@ -1,38 +1,53 @@
-const { trekRequest } = require("../model/associations");
+const request = require("../model/requestSchema");
 
 const create = async (req, res) => {
-    const requestData = req.body; // Avoid variable name conflict
- 
-    try {
-        const data = await trekRequest.create(requestData); // Use model reference correctly
-        res.status(201).send({ data, message: "Successfully created request" });
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
+  try {
+    const body = req.body;
+    console.log(req.body);
 
-const getAllRequests = async (req, res) => {
-    try {
-        const trekRequests = await trekRequest.findAll();
-        res.json(trekRequests);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }    
+    if (!body?.name || !body?.email || !body?.phone) {
+      return res.status(500).send({ message: "Invalid" });
+    }
+
+    const requests = await request.create({
+      name: body.name,
+      email: body.email,
+      phone: body.phone,
+      noOfPeople: body.noOfPeople,
+      message: body.message,
+      trekId: body.trekId,	
+    });
+    res.status(201).send({ data: requests, message: "successfully created request" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "failed to fetch request" });
+  }
 };
 
 const getRequestById = async (req, res) => {
     try {
-        const requestId = req.params.id;
-        const request = await trekRequest.findByPk(requestId);
-
-        if (!request) {
-            return res.status(404).send({ message: "Request not found" });
-        }
-        res.status(200).send({ data: request.toJSON() });
+      const requestId = req.params.id;
+      const request = await request.findByPk(requestId);
+  
+      if (!request) {
+        return res.status(404).send({ message: "request not found" });
+      }
+      const requestData = request.toJSON();
+      res.status(200).send({ data: requestData });
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: "Failed to fetch request" });
+      console.log(error);
+      res.status(500).json({ error: "failed to fetch request" });
     }
-};
+  };
 
-module.exports = { create, getAllRequests, getRequestById };
+  const getAllRequests = async (req, res) => {
+    try {
+      const requests = await request.findAll();
+      res.status(200).send({ data: requests });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "failed to fetch requests" });
+    }
+  };
+
+ module.exports = { create, getAllRequests, getRequestById };

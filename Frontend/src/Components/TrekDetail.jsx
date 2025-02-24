@@ -85,7 +85,7 @@ const TrekDetail = () => {
           </section>
         </div>
         <section className="right-container">
-          <RequestForm />
+          <RequestForm trekId={trekId} />
         </section>
       </div>
       <Footer />

@@ -98,15 +98,6 @@ const AddTrek = () => {
     } catch (error) {
       console.log(error);
     }
-
-    // try {
-    //   const response = await axios.post("http://localhost:5000/api/days", {
-    //     title: formData.itinerary.title,
-    //     region: formData.itinerary.description,
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   return (

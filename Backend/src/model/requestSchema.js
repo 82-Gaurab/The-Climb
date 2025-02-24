@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../database/db");
+const Trek = require("./trekSchema");
 
 
 const request = sequelize.define("requests", {
@@ -31,6 +32,16 @@ const request = sequelize.define("requests", {
         type: DataTypes.TEXT,
         allowNull: false
     },
+    trekId: {  // Adding trekId as a foreign key
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Trek, // Reference the Trek model
+            key: "trekId"    // Foreign key references the id column in Treks table
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
+    }
     
  }, {
 

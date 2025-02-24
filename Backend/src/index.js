@@ -31,9 +31,6 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/file", router);
 
-// app.use("/api/days",dayRouter);
-
-
 (async () => {
   try {
     await sequelize.authenticate();
