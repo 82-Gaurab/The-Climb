@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../utility/Button";
 import axios from "axios";
 
 export default function RegisterComponent() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -14,28 +17,26 @@ export default function RegisterComponent() {
 
   const handleErrors = async (e) => {
     e.preventDefault();
-    // if (!email || !password || !name || !confirmPassword) {
-    //   setError("All fields are required");
-    //   return;
-    // }
+    if (!email || !password || !name || !confirmPassword) {
+      setError("All fields are required");
+      return;
+    }
 
-    // if (!email.includes("@") || !email.includes(".")) {
-    //   setEmailError("Please enter a valid email address");
-    //   return;
-    // }
+    if (!email.includes("@") || !email.includes(".")) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
 
-    // if (password.length < 8) {
-    //   setPasswordError("Password must be at least 8 characters long");
-    //   return;
-    // }
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
+      return;
+    }
 
-    // if (password !== confirmPassword) {
-    //   setConfirmPasswordError("Passwords do not match");
-    //   return;
-    // }
-    // setError("");
-    // Proceed with form submission or further validation
-
+    if (password !== confirmPassword) {
+      setConfirmPasswordError("Passwords do not match");
+      return;
+    }
+    setError("");
     try {
       const response = await axios.post("http://localhost:5000/api/user", {
         username: name,
@@ -44,6 +45,7 @@ export default function RegisterComponent() {
       });
 
       console.log("User registered successfully", response);
+      navigate("/login");
     } catch (err) {
       console.log(err);
     }

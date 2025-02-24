@@ -44,10 +44,6 @@ const getAllUsers = async (req, res) => {
   try {
     const users = await User.findAll({
       attributes: { exclude: ["password"] },
-      include: {
-        model: UserProfile,
-        as: "profile",
-      },
     });
     res.status(200).send({ data: users });
   } catch (error) {
