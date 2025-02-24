@@ -43,10 +43,19 @@ export default function RequestForm({ trekId }) {
     } catch (error) {
       console.log(error);
       toast.error("Failed to send request. Please try again.");
+      return;
     }
     toast.success(
       "Request sent successfully! We will get back to you shortly."
     );
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      noOfPeople: "Easy",
+      message: "",
+      trekId: trekId,
+    });
   };
 
   return (

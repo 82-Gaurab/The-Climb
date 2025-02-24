@@ -3,14 +3,13 @@ import "../Styles/LandingPage.css";
 import TrekCard from "../utility/TrekCard";
 import ReviewCard from "../utility/ReviewCard";
 
-import mountain1 from "../assets/images/mountain1.jpg";
-import mountain2 from "../assets/images/mountain2.jpg";
-import mountain3 from "../assets/images/mountain3.jpg";
-import mountain4 from "../assets/images/mountain4.jpg";
 import profilePic from "../assets/icon/user.png";
 import Footer from "../utility/Footer";
+import axios from "axios";
 
 export default function LandingPage() {
+  const [treks, setTreks] = useState([]);
+  const [error, setError] = useState(null);
   const [isHovered, setIsHovered] = useState(false);
   const sliderRef = useRef(null);
 
@@ -33,75 +32,18 @@ export default function LandingPage() {
     return () => cancelAnimationFrame(animationFrame);
   }, [isHovered]);
 
-  // Static Popular trek data
-  // const popularTrek = [
-  //   {
-  //     title: "Everest Base Camp",
-  //     location: "Nepal",
-  //     duration: "14 days",
-  //     price: "$2,800",
-  //     image: mountain1,
-  //   },
-  //   {
-  //     title: "Annapurna Circuit",
-  //     location: "Nepal",
-  //     duration: "12 days",
-  //     price: "$2,200",
-  //     image: mountain2,
-  //   },
-  //   {
-  //     title: "Gauri Shanker Himal",
-  //     location: "France/Italy",
-  //     duration: "8 days",
-  //     price: "$1,800",
-  //     image: mountain4,
-  //   },
-  // ];
+  useEffect(() => {
+    const fetchTreks = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/getTrek"); // Adjust backend URL
+        setTreks(response.data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
 
-  const latestTrek = [
-    {
-      title: "Everest Base Camp",
-      location: "Nepal",
-      duration: "14 days",
-      price: "$2,800",
-      image: mountain1,
-    },
-    {
-      title: "Annapurna Circuit",
-      location: "Nepal",
-      duration: "12 days",
-      price: "$2,200",
-      image: mountain2,
-    },
-    {
-      title: "Gauri Shanker Himal",
-      location: "France/Italy",
-      duration: "8 days",
-      price: "$1,800",
-      image: mountain3,
-    },
-    {
-      title: "Gauri Shanker Himal",
-      location: "France/Italy",
-      duration: "8 days",
-      price: "$1,800",
-      image: mountain4,
-    },
-    {
-      title: "Gauri Shanker Himal",
-      location: "France/Italy",
-      duration: "8 days",
-      price: "$1,800",
-      image: mountain4,
-    },
-    {
-      title: "Gauri Shanker Himal",
-      location: "France/Italy",
-      duration: "8 days",
-      price: "$1,800",
-      image: mountain4,
-    },
-  ];
+    fetchTreks();
+  }, []);
 
   const reviews = [
     {
@@ -188,8 +130,9 @@ export default function LandingPage() {
       <section className="featured-treks">
         <h1>Featured Treks</h1>
         <div className="trek-list">
-          {latestTrek.slice(0, 6).map((trek, index) => (
-            <TrekCard key={index} trek={trek} />
+          {error && <p className="text-red-500">{error}</p>}
+          {treks.slice(0, 6).map((trek) => (
+            <TrekCard key={trek.trekId} trek={trek} />
           ))}
         </div>
       </section>

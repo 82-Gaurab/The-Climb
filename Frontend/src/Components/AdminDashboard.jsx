@@ -7,14 +7,28 @@ import "../Styles/AdminDashboard.css";
 import axios from "axios";
 
 // Action Buttons Component
-const ActionButtons = ({ id, handleDelete }) => (
+const UserActionButtons = ({ id, handleDelete }) => (
   <div className="flex gap-2">
     <Button text="Delete" onClick={() => handleDelete(id)} />
+  </div>
+);
+const RequestActionButtons = ({ id, handleStatusUpdate }) => (
+  <div className="flex gap-2 flex-wrap mb-2">
+    <Button text="Pending" onClick={() => handleStatusUpdate(id, "Pending")} />
+    <Button
+      text="Confirmed"
+      onClick={() => handleStatusUpdate(id, "Confirmed")}
+    />
+    <Button
+      text="Cancelled"
+      onClick={() => handleStatusUpdate(id, "Cancelled")}
+    />
   </div>
 );
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
+  const [trekRequest, setTrekRequest] = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -29,6 +43,21 @@ export default function AdminDashboard() {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    const fetchTrekRequest = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/request");
+        setTrekRequest(response.data.data); // Set the fetched users
+        console.log(
+          `Trek Request fetched: ${JSON.stringify(response.data.data)}`
+        );
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    fetchTrekRequest();
+  }, []);
+
   // Handle user deletion
   const handleDelete = async (id) => {
     try {
@@ -40,8 +69,87 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleStatusUpdate = async (id, newStatus) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:5000/api/request/${id}`,
+        { status: newStatus },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      console.log("Response from server:", response.data);
+
+      setTrekRequest((prevRequests) =>
+        prevRequests.map((req) =>
+          req.requestId === id ? { ...req, status: newStatus } : req
+        )
+      );
+    } catch (error) {
+      console.error(
+        "Failed to update status:",
+        error.response?.data || error.message
+      );
+    }
+  };
   // Define table columns
-  const columns = [
+  const requestColumns = [
+    {
+      name: "Request ID",
+      selector: (row) => row.requestId,
+      sortable: true,
+    },
+    {
+      name: "Name",
+      selector: (row) => row.name,
+      sortable: true,
+    },
+    {
+      name: "Email",
+      selector: (row) => row.email,
+      sortable: true,
+    },
+    {
+      name: "Phone Number",
+      selector: (row) => row.phone,
+      sortable: true,
+    },
+    {
+      name: "No of people",
+      selector: (row) => row.noOfPeople,
+      sortable: true,
+    },
+    {
+      name: "Message",
+      selector: (row) => row.message,
+      sortable: true,
+    },
+    {
+      name: "Status",
+      selector: (row) => row.status,
+      sortable: true,
+    },
+    {
+      name: "Trek ID",
+      selector: (row) => row.trekId,
+      sortable: true,
+    },
+    {
+      name: "Action",
+      cell: (row) => (
+        <RequestActionButtons
+          id={row.requestId}
+          handleStatusUpdate={handleStatusUpdate}
+        />
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      minWidth: "150px",
+    },
+  ];
+
+  const userColumns = [
     {
       name: "User ID",
       selector: (row) => row.userId,
@@ -65,7 +173,7 @@ export default function AdminDashboard() {
     {
       name: "Action",
       cell: (row) => (
-        <ActionButtons id={row.userId} handleDelete={handleDelete} />
+        <UserActionButtons id={row.userId} handleDelete={handleDelete} />
       ),
     },
   ];
@@ -82,11 +190,19 @@ export default function AdminDashboard() {
         <h1 className="heading">Admin Dashboard</h1>
         <DataTable
           title="User List"
-          columns={columns}
+          columns={userColumns}
           data={users} // Dynamically set users data
           pagination
           highlightOnHover
           keyField="userId" // Ensure this is the unique identifier
+        />
+        <DataTable
+          title="Trek Request List"
+          columns={requestColumns}
+          data={trekRequest} // Dynamically set users data
+          pagination
+          highlightOnHover
+          keyField="requestId" // Ensure this is the unique identifier
         />
       </div>
     </div>

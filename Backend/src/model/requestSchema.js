@@ -32,6 +32,13 @@ const request = sequelize.define("requests", {
         type: DataTypes.TEXT,
         allowNull: false
     },
+
+    status: {
+        type: DataTypes.ENUM('Pending', 'Confirmed', 'Cancelled'),
+        allowNull: false,
+        defaultValue: "Pending"
+    },
+    
     trekId: {  // Adding trekId as a foreign key
         type: DataTypes.INTEGER,
         allowNull: false,

@@ -15,6 +15,7 @@ const create = async (req, res) => {
       phone: body.phone,
       noOfPeople: body.noOfPeople,
       message: body.message,
+      status: body.status || "pending", 
       trekId: body.trekId,	
     });
     res.status(201).send({ data: requests, message: "successfully created request" });
@@ -40,7 +41,7 @@ const getRequestById = async (req, res) => {
     }
   };
 
-  const getAllRequests = async (req, res) => {
+const getAllRequests = async (req, res) => {
     try {
       const requests = await request.findAll();
       res.status(200).send({ data: requests });
@@ -48,6 +49,38 @@ const getRequestById = async (req, res) => {
       console.log(error);
       res.status(500).json({ error: "failed to fetch requests" });
     }
-  };
+};
 
- module.exports = { create, getAllRequests, getRequestById };
+const updateRequestStatus = async (req, res) => {
+  try {
+    console.log("Request received to update status:", req.params.id, req.body);
+
+    const { id } = req.params;
+    const { status } = req.body;
+
+    // Check if request exists
+    const existingRequest = await request.findByPk(id);
+    if (!existingRequest) {
+      console.log("Request not found with ID:", id);
+      return res.status(404).json({ message: "Request not found" });
+    }
+
+    console.log("Existing request found:", existingRequest);
+
+    // Update status
+    existingRequest.status = status;
+    await existingRequest.save();
+
+    console.log("Updated request:", existingRequest);
+
+    res.status(200).json({
+      message: "Request status updated successfully",
+      data: existingRequest,
+    });
+  } catch (error) {
+    console.error("❌ Error updating request status:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+ module.exports = { create, getAllRequests, getRequestById, updateRequestStatus };
