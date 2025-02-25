@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Suspense } from "react";
 import "./App.css";
-import mountain_loading from "./assets/images/snoball-loading.gif";
 
 import {
   BrowserRouter as Router,
@@ -29,34 +28,22 @@ const RequestForm = React.lazy(() => import("./utility/RequestForm"));
 function App() {
   return (
     <Router>
-      <Suspense
-        fallback={
-          <div>
-            <img
-              src={mountain_loading}
-              alt="Loading"
-              style={{ margin: "20vh auto", height: "30em" }}
-            />
-          </div>
-        }
-      >
-        <Routes>
-          <Route path="/" element={<Navigate to={"/main"} />} />
-          <Route path="/main" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/trekDetail" element={<TrekDetail />} />
-          <Route path="/trekList" element={<Treks />} />
-          {/* <Route path="/re" element={<RequestForm />} /> */}
-          <Route path="/trek/:trekId" element={<TrekDetail />} />
+      <Routes>
+        <Route path="/" element={<Navigate to={"/main"} />} />
+        <Route path="/main" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/trekDetail" element={<TrekDetail />} />
+        <Route path="/trekList" element={<Treks />} />
+        {/* <Route path="/re" element={<RequestForm />} /> */}
+        <Route path="/trek/:trekId" element={<TrekDetail />} />
 
-          <Route element={<ProtectedRoute />}>
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/trek" element={<AdminTrekManagement />} />
-          </Route>
-        </Routes>
-      </Suspense>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/trek" element={<AdminTrekManagement />} />
+        </Route>
+      </Routes>
     </Router>
     // <TrekManagement />
     // <AdminDashboard />
