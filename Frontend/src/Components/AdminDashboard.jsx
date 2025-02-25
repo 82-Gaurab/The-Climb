@@ -61,7 +61,12 @@ export default function AdminDashboard() {
   // Handle user deletion
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/user/${id}`); // API call to delete the user
+      const token = localStorage.getItem("token"); // Retrieve token from localStorage (or sessionStorage)
+      await axios.delete(`http://localhost:5000/api/user/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Ensure token is included
+        },
+      });
       setUsers(users.filter((user) => user.userId !== id)); // Remove the user from state
       console.log(`User ${id} deleted.`);
     } catch (err) {

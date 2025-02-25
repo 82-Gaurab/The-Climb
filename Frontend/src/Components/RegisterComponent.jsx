@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../utility/Button";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function RegisterComponent() {
   const navigate = useNavigate();
@@ -45,8 +46,13 @@ export default function RegisterComponent() {
       });
 
       console.log("User registered successfully", response);
+      toast.success("User registered successfully!");
       navigate("/login");
     } catch (err) {
+      toast.error(
+        err.response?.data?.message ||
+          "Failed to register user. Please try again."
+      );
       console.log(err);
     }
   };

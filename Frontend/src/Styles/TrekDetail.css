@@ -1,5 +1,4 @@
 .trek-container {
-  padding-top: 4rem;
   background-color: #f9fafb;
 }
 
@@ -40,6 +39,8 @@
   flex-wrap: wrap;
   gap: 1rem;
   color: white;
+  font-weight: 700;
+  font-size: larger;
 }
 
 .hero-details span {
@@ -84,6 +85,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 6em;
 }
 
 .trek-details {
@@ -102,9 +104,12 @@
 
 .detail-content span {
   font-size: 18px;
+  color: rgb(44, 44, 44);
+  font-weight: 600;
 }
 
 .detail-content .detail-type {
   font-size: 22px;
   font-weight: 700;
+  color: rgb(12, 12, 12);
 }
