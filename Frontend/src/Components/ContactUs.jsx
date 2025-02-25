@@ -1,29 +1,8 @@
-import Button from "../utility/Button";
-import TextareaAutosize from "react-textarea-autosize";
-import { useState } from "react";
 import { Mail, Phone } from "lucide-react";
 import "../Styles/ContactUs.css";
 import Footer from "../utility/Footer";
 
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add form validation and submission logic here
-    console.log("Form submitted:", formData);
-  };
-
   return (
     <div className="h-fit">
       <section className="hero-section">
@@ -75,53 +54,6 @@ const ContactUs = () => {
             </div>
           </div>
         </div>
-        {/* Contact Form */}
-        <form onSubmit={handleSubmit} className="contact-form">
-          <p className="form-title">Contact Us</p>
-
-          <p className="form-input">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-              className="input-field"
-              onChange={handleChange}
-            />
-          </p>
-
-          <p className="form-input">
-            <input
-              type="email"
-              name="email"
-              placeholder="your.email@example.com"
-              required
-              className="input-field"
-              onChange={handleChange}
-            />
-          </p>
-
-          <p className="form-input">
-            <input
-              type="text"
-              name="subject"
-              placeholder="What is this regarding?"
-              className="input-field"
-              onChange={handleChange}
-            />
-          </p>
-
-          <p className="form-input">
-            <TextareaAutosize
-              className="input-field"
-              placeholder="Your Message here..."
-              minRows={3}
-              maxRows={5}
-            />
-          </p>
-
-          <Button text={"Send Message"} />
-        </form>
       </section>
 
       {/* Location embedded */}

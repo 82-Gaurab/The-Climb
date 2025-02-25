@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Suspense } from "react";
 import "./App.css";
-import mountain_loading from "./assets/images/mountain-loading_gif.gif";
+import mountain_loading from "./assets/images/snoball-loading.gif";
 
 import {
   BrowserRouter as Router,

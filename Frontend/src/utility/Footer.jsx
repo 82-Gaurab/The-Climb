@@ -10,7 +10,7 @@ export default function Footer() {
           <a href="/" className="hover:text-gray-400">
             Home
           </a>
-          <a href="#" className="hover:text-gray-400">
+          <a href="/trekList" className="hover:text-gray-400">
             Treks
           </a>
           <a href="/contact" className="hover:text-gray-400">
