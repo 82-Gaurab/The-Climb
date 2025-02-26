@@ -1,4 +1,5 @@
 const User = require("../model/userSchema");
+const bcrypt = require("bcryptjs");
 
 const create = async (req, res) => {
   try {
@@ -9,10 +10,12 @@ const create = async (req, res) => {
       return res.status(500).send({ message: "Invalid" });
     }
 
+    const hashPassword = await bcrypt.hash(body.password, 10);
+
     const users = await User.create({
       username: body.username,
       email: body.email,
-      password: body.password,
+      password: hashPassword,
     });
     res.status(201).send({ data: users, message: "successfully created user" });
   } catch (error) {

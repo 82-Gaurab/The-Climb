@@ -1,34 +1,40 @@
 const User = require("../model/userSchema");
 const { generateToken } = require("../security/jwt-util");
+const bcrypt = require("bcryptjs");
 
 const login = async (req, res) => {
   try {
-    //fetching all the data from users table
-    const user = await User.findOne({ where: { email: req.body.email } });
-    if (req.body.email == null) {
-      return res.status(500).send({ message: "email is required" });
+    const { email, password } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
     }
-    if (req.body.password == "") {
-      return res.status(500).send({ message: "password is required" });
-    }
-    if (req.body.password != user.password) {
-      return res.status(500).send({ message: "Incorrect credentials" });
+    if (!password) {
+      return res.status(400).json({ message: "Password is required" });
     }
 
-
+    // Fetch user from database
+    const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(500).send({ message: "user not found" });
+      return res.status(401).json({ message: "Invalid email or password" });
     }
-    if (user.password == req.body.password) {
-      const token = generateToken({ user: user.toJSON() });
-      return res.status(200).send({
-        data: { access_token: token, role: user.role, userId: user.userId },
 
-        message: "successfully logged in",
-      });
+    // Compare hashed passwords
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid email or password" });
     }
-  } catch (e) {
-    console.log(e);
+
+    // Generate JWT token
+    const token = generateToken({ user: user.toJSON() });
+
+    return res.status(200).json({
+      data: { access_token: token, role: user.role, userId: user.userId },
+      message: "Successfully logged in",
+    });
+
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Failed to login" });
   }
 };
@@ -36,13 +42,11 @@ const login = async (req, res) => {
 const init = async (req, res) => {
   try {
     const user = req.user.user;
-    delete user.password;
-    res
-      .status(201)
-      .send({ data: user, message: "successfully fetched current  user" });
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ error: "Failed to fetch users" });
+    delete user.password; // Ensure password is not exposed
+    res.status(200).json({ data: user, message: "Successfully fetched current user" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch user" });
   }
 };
 
