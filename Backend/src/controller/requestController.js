@@ -15,7 +15,7 @@ const create = async (req, res) => {
       phone: body.phone,
       noOfPeople: body.noOfPeople,
       message: body.message,
-      status: body.status || "pending", 
+      status: body.status || "Pending", 
       trekId: body.trekId,	
     });
     res.status(201).send({ data: requests, message: "successfully created request" });

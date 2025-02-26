@@ -23,8 +23,9 @@ export default function RegisterComponent() {
       return;
     }
 
-    if (!email.includes("@") || !email.includes(".")) {
-      setEmailError("Please enter a valid email address");
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      toast.error("Please enter a valid email address.");
       return;
     }
 

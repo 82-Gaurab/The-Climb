@@ -193,22 +193,28 @@ export default function AdminDashboard() {
       {/* Main Content */}
       <div className="main-content">
         <h1 className="heading">Admin Dashboard</h1>
-        <DataTable
-          title="User List"
-          columns={userColumns}
-          data={users} // Dynamically set users data
-          pagination
-          highlightOnHover
-          keyField="userId" // Ensure this is the unique identifier
-        />
-        <DataTable
-          title="Trek Request List"
-          columns={requestColumns}
-          data={trekRequest} // Dynamically set users data
-          pagination
-          highlightOnHover
-          keyField="requestId" // Ensure this is the unique identifier
-        />
+
+        <div className="data-table">
+          <h1>User List</h1>
+          <DataTable
+            columns={userColumns}
+            data={users} // Dynamically set users data
+            pagination
+            highlightOnHover
+            keyField="userId" // Ensure this is the unique identifier
+          />
+        </div>
+
+        <div className="data-table">
+          <h1>Trek Request List</h1>
+          <DataTable
+            columns={requestColumns}
+            data={trekRequest} // Dynamically set users data
+            pagination
+            highlightOnHover
+            keyField="requestId" // Ensure this is the unique identifier
+          />
+        </div>
       </div>
     </div>
   );

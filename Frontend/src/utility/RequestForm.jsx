@@ -28,8 +28,29 @@ export default function RequestForm({ trekId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.noOfPeople
+    ) {
+      toast.error("All fields except message are required!");
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    if (formData.noOfPeople == 0) {
+      toast.error("Number of people must be greater than 0.");
+      return;
+    }
+
+    console.log(formData);
     try {
       const response = await axios.post("http://localhost:5000/api/request", {
         trekId: formData.trekId,
@@ -38,7 +59,6 @@ export default function RequestForm({ trekId }) {
         phone: formData.phone,
         noOfPeople: formData.noOfPeople,
         message: formData.message,
-        trekId: formData.trekId,
       });
     } catch (error) {
       console.log(error);
