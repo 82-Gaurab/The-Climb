@@ -8,7 +8,13 @@ import AddTrek from "./AddTrek";
 import axios from "axios";
 
 import "../Styles/TrekManagement.css";
+import { toast } from "react-toastify";
 
+const TrekActionButtons = ({ id, handleDelete }) => (
+  <div className="flex gap-2">
+    <Button text="Delete" onClick={() => handleDelete(id)} />
+  </div>
+);
 export default function TrekManagement() {
   const [treks, setTreks] = useState([]);
 
@@ -24,6 +30,22 @@ export default function TrekManagement() {
     };
     fetchTreks();
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`http://localhost:5000/api/addTrek/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setTreks(treks.filter((trek) => trek.trekId !== id));
+      console.log(`Trek ${id} deleted.`);
+      toast.success("Trek deleted successfully.");
+    } catch (err) {
+      console.log("Error deleting trek:", err.message);
+    }
+  };
 
   const columns = [
     {
@@ -55,6 +77,15 @@ export default function TrekManagement() {
       name: "Price ($)",
       selector: (row) => row.price,
       sortable: true,
+    },
+    {
+      name: "Action",
+      cell: (row) => (
+        <TrekActionButtons id={row.trekId} handleDelete={handleDelete} />
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      minWidth: "150px",
     },
   ];
 

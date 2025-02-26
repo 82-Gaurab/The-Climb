@@ -16,6 +16,8 @@ const AddTrek = () => {
     description: "",
   });
 
+  const [error, setError] = useState("");
+
   const [previewImage, setPreviewImage] = useState(null);
 
   const [image, setImage] = useState(null);
@@ -36,11 +38,27 @@ const AddTrek = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+
+    if (!formData.trek || !formData.region || !formData.duration) {
+      setError("All fields are required");
+      return;
+    }
+
+    if (formData.price <= 0) {
+      setError("Price must be greater than 0");
+      return;
+    }
+
+    if (formData.duration < 1 || formData.duration > 30) {
+      setError("Duration must be between 1 and 30 days");
+      return;
+    }
 
     try {
       let imageUrl = "";
@@ -93,8 +111,8 @@ const AddTrek = () => {
           },
         }
       );
-      console.log("Trek added", response);
       toast.success("Trek added successfully!");
+      console.log("Trek added", response);
       setFormData({
         trek: "",
         region: "",
@@ -127,6 +145,9 @@ const AddTrek = () => {
         <div className="trek-form-card">
           <form onSubmit={handleSubmit} className="trek-form">
             <div className="section">
+              {error && (
+                <p className="text-red-600 font-semibold text-xl">{error}</p>
+              )}
               <h2 className="section-title">Basic Information</h2>
               <div className="section-grid">
                 <div className="input-group">
