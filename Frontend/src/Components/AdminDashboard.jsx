@@ -12,7 +12,11 @@ const UserActionButtons = ({ id, handleDelete }) => (
     <Button text="Delete" onClick={() => handleDelete(id)} />
   </div>
 );
-const RequestActionButtons = ({ id, handleStatusUpdate }) => (
+const RequestActionButtons = ({
+  id,
+  handleStatusUpdate,
+  handleRequestDelete,
+}) => (
   <div className="flex gap-2 flex-wrap mb-2">
     <Button text="Pending" onClick={() => handleStatusUpdate(id, "Pending")} />
     <Button
@@ -23,6 +27,7 @@ const RequestActionButtons = ({ id, handleStatusUpdate }) => (
       text="Cancelled"
       onClick={() => handleStatusUpdate(id, "Cancelled")}
     />
+    <Button text="Delete" onClick={() => handleRequestDelete(id)} />
   </div>
 );
 
@@ -71,6 +76,16 @@ export default function AdminDashboard() {
       console.log(`User ${id} deleted.`);
     } catch (err) {
       console.log("Error deleting user:", err.message);
+    }
+  };
+
+  const handleRequestDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/request/${id}`);
+      setTrekRequest(trekRequest.filter((request) => request.requestId !== id)); // Remove the user from state
+      console.log(`Request ${id} deleted.`);
+    } catch (err) {
+      console.log("Error deleting request:", err.message);
     }
   };
 
@@ -146,6 +161,7 @@ export default function AdminDashboard() {
         <RequestActionButtons
           id={row.requestId}
           handleStatusUpdate={handleStatusUpdate}
+          handleRequestDelete={handleRequestDelete}
         />
       ),
       ignoreRowClick: true,
