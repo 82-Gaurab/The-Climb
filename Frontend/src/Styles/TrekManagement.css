@@ -3,7 +3,7 @@
   min-height: 100vh;
 }
 
-.trek-management-container .trek-management-navbar {
+.trek-management-navbar {
   height: auto;
   min-height: 100vh;
   padding: 0;
@@ -28,4 +28,67 @@
 
 .trek-management-container .sidebar #treks {
   pointer-events: none;
+}
+
+/* Ensure the sidebar and main content stack properly on small screens */
+@media screen and (max-width: 1024px) {
+  .trek-management-navbar {
+    min-height: auto;
+    height: auto;
+  }
+
+  .trek-main-content {
+    margin-top: 60px; /* Offset for fixed sidebar */
+    height: calc(100vh - 60px);
+    padding: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .trek-management-container {
+    flex-direction: column;
+  }
+  .trek-management-navbar {
+    min-height: auto;
+  }
+
+  .trek-main-content {
+    padding: 16px;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .trek-main-content .table-container table {
+    min-width: 600px; /* Prevents table from breaking on small screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .trek-management-container {
+    flex-direction: column;
+  }
+
+  .trek-management-navbar {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+  }
+  .trek-main-content {
+    padding: 10px;
+  }
+
+  .trek-management-container .sidebar #treks p {
+    font-size: 14px;
+  }
+
+  .trek-main-content .table-container table {
+    min-width: 100%;
+  }
+
+  .trek-main-content .table-container .rdt_Table {
+    font-size: 14px; /* Reduce font size for better readability */
+  }
 }

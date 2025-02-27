@@ -66,3 +66,46 @@ p {
 .sidebar ul li:hover button {
   color: #63b3ed;
 }
+
+/* Responsive Sidebar */
+@media screen and (max-width: 1024px) {
+  .sidebar-container {
+    width: 200px;
+    padding: 20px 10px 0 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar-container {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .sidebar-container .sidebar {
+    width: 100%;
+    background-color: #202632;
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  .sidebar-container.active .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar-container {
+    padding: 10px;
+  }
+
+  .sidebar ul li p,
+  .sidebar ul li button {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+}

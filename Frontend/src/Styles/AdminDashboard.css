@@ -98,3 +98,86 @@
 .dashboard-container .dashboard-navbar .sidebar #dashboard {
   pointer-events: none;
 }
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  /* .dashboard-container {
+    flex-direction: column;
+  } */
+
+  .dashboard-navbar {
+    height: auto;
+    min-height: auto;
+  }
+
+  .main-content {
+    padding: 16px;
+    flex-direction: column;
+  }
+
+  .heading {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .dashboard-navbar {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+  }
+
+  .main-content {
+    padding: 12px;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .heading {
+    font-size: 1.8rem;
+  }
+
+  .data-table h1 {
+    font-size: 1.5em;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-content {
+    padding: 8px;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .data-table h1 {
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+  .btn {
+    padding: 5px 8px;
+    font-size: 0.85rem;
+  }
+
+  .data-table {
+    overflow-x: auto;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+}

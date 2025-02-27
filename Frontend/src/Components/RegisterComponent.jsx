@@ -57,87 +57,75 @@ export default function RegisterComponent() {
       console.log(err);
     }
   };
+
   return (
-    <div className="w-fit m-auto flex items-center justify-center min-h-screen ">
-      <form className="flex flex-col items-center  flex-wrap gap-sm pt-10 pr-10 pl-10 pb4 rounded-3xl w-lg shadow-2xl shadow-zinc-500 border-slate-300 border-[1px]">
-        <p className="text-3xl font-sans mb-3 antialiased font-bold text-gray-800">
+    <div className="w-full flex items-center justify-center min-h-screen">
+      <form className="flex flex-col items-center gap-4 pt-10 pr-10 pl-10 pb-4 rounded-3xl w-full sm:w-96 shadow-2xl border border-gray-300">
+        <p className="text-3xl font-sans mb-3 font-bold text-gray-800">
           Register
         </p>
 
         {error && <p className="text-red-500">{error}</p>}
-        <p className="flex flex-col items-center w-full">
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              setError("");
-            }}
-            className="pl-4 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
-          />
-        </p>
-        <p className="flex flex-col items-center w-full">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setEmailError("");
-              setError("");
-            }}
-            className="pl-4 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
-          />
-          {emailError && <p className="text-red-500">{emailError}</p>}
-        </p>
-        <p className="flex flex-col items-center w-full">
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setPasswordError("");
-              setError("");
-            }}
-            className="pl-4 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
-          />
-          {passwordError && <p className="text-red-500">{passwordError}</p>}
-        </p>
-        <p className="flex flex-col items-center w-full">
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => {
-              setConfirmPassword(e.target.value);
-              setConfirmPasswordError("");
-              setError("");
-            }}
-            className="pl-4 pt-3 pb-3 border-1 border-gray-400 rounded-md w-full focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
-          />
-          {confirmPasswordError && (
-            <p className="text-red-500">{confirmPasswordError}</p>
-          )}
-        </p>
-        <p className="w-full">
-          {/* <button
-            style={{ borderRadius: "20px" }}
-            className="bg-sky-500 pl-5 pr-5 pt-2 pb-2 text-white antialiased w-full cursor-pointer hover:bg-sky-700 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md font-bold color-white"
-            onClick={handleErrors}
-          >
-            Register
-          </button> */}
-          <Button text={"Register"} onClick={handleErrors} />
-        </p>
+
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+            setError("");
+          }}
+          className="pl-4 pt-3 pb-3 border border-gray-400 rounded-md w-full focus:outline-violet-500 focus:ring-1 focus:ring-indigo-200"
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setEmailError("");
+            setError("");
+          }}
+          className="pl-4 pt-3 pb-3 border border-gray-400 rounded-md w-full focus:outline-violet-500 focus:ring-1 focus:ring-indigo-200"
+        />
+        {emailError && <p className="text-red-500">{emailError}</p>}
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setPasswordError("");
+            setError("");
+          }}
+          className="pl-4 pt-3 pb-3 border border-gray-400 rounded-md w-full focus:outline-violet-500 focus:ring-1 focus:ring-indigo-200"
+        />
+        {passwordError && <p className="text-red-500">{passwordError}</p>}
+
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+            setConfirmPasswordError("");
+            setError("");
+          }}
+          className="pl-4 pt-3 pb-3 border border-gray-400 rounded-md w-full focus:outline-violet-500 focus:ring-1 focus:ring-indigo-200"
+        />
+        {confirmPasswordError && (
+          <p className="text-red-500">{confirmPasswordError}</p>
+        )}
+
+        <Button text={"Register"} onClick={handleErrors} />
 
         <p className="flex flex-wrap gap-2">
           Already have an account?{" "}
           <a
             href="/login"
-            className="text-blue-500 active:text-violet-500 focus:outline-violet-500 focus:outline-1 focus:shadow-indigo-200 focus:shadow-md"
-            style={{ textDecoration: "none" }}
+            className="text-blue-500 active:text-violet-500 focus:outline-violet-500 focus:ring-1 focus:ring-indigo-200"
           >
             Sign In
           </a>
