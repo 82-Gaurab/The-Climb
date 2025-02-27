@@ -1,19 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  Calendar,
-  Clock,
-  Mountain,
-  ThermometerSun,
-  Users,
-  Mail,
-} from "lucide-react";
-import { useForm } from "react-hook-form";
-
+import { Clock, Mountain } from "lucide-react";
 import "../Styles/TrekDetail.css";
 
-import mountain1 from "../assets/images/mountain1.jpg";
 import Footer from "../utility/Footer";
 import RequestForm from "../utility/RequestForm";
 
