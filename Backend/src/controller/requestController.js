@@ -28,12 +28,12 @@ const create = async (req, res) => {
 const getRequestById = async (req, res) => {
     try {
       const requestId = req.params.id;
-      const request = await request.findByPk(requestId);
+      const foundRequest  = await request.findByPk(requestId);
   
-      if (!request) {
+      if (!foundRequest ) {
         return res.status(404).send({ message: "request not found" });
       }
-      const requestData = request.toJSON();
+      const requestData = foundRequest .toJSON();
       res.status(200).send({ data: requestData });
     } catch (error) {
       console.log(error);
