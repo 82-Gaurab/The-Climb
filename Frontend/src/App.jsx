@@ -18,13 +18,11 @@ const Login = React.lazy(() => import("./Components/LoginComponent"));
 const Register = React.lazy(() => import("./Components/RegisterComponent"));
 const ContactUs = React.lazy(() => import("./Components/ContactUs"));
 const TrekDetail = React.lazy(() => import("./Components/TrekDetail"));
-const AddTrek = React.lazy(() => import("./Components/AddTrek"));
 const AdminDashboard = React.lazy(() => import("./Components/AdminDashboard"));
 const AdminTrekManagement = React.lazy(() =>
   import("./Components/AdminTrekManagement")
 );
 const Treks = React.lazy(() => import("./Components/AllTrek"));
-const RequestForm = React.lazy(() => import("./utility/RequestForm"));
 function App() {
   return (
     <Router>
@@ -36,7 +34,6 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/trekDetail" element={<TrekDetail />} />
         <Route path="/trekList" element={<Treks />} />
-        {/* <Route path="/re" element={<RequestForm />} /> */}
         <Route path="/trek/:trekId" element={<TrekDetail />} />
 
         <Route element={<ProtectedRoute />}>
@@ -45,8 +42,6 @@ function App() {
         </Route>
       </Routes>
     </Router>
-    // <TrekManagement />
-    // <AdminDashboard />
   );
 }
 
