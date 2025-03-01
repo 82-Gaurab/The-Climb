@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import TrekCard from "../utility/TrekCard"; // Import the TrekCard component
+import TrekCard from "../utility/TrekCard";
 import Footer from "../utility/Footer";
 
 export default function AllTrek() {
@@ -11,7 +11,7 @@ export default function AllTrek() {
   useEffect(() => {
     const fetchTreks = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/getTrek"); // Adjust backend URL
+        const response = await axios.get("http://localhost:5000/api/getTrek");
         setTreks(response.data);
       } catch (err) {
         setError(err.message);

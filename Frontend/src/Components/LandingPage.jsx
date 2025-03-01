@@ -35,7 +35,7 @@ export default function LandingPage() {
   useEffect(() => {
     const fetchTreks = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/getTrek"); // Adjust backend URL
+        const response = await axios.get("http://localhost:5000/api/getTrek");
         setTreks(response.data);
       } catch (err) {
         setError(err.message);

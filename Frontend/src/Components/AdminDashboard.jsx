@@ -39,7 +39,7 @@ export default function AdminDashboard() {
     const fetchUsers = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/user");
-        setUsers(response.data.data); // Set the fetched users
+        setUsers(response.data.data);
         console.log(`Data fetched: ${JSON.stringify(response.data.data)}`);
       } catch (err) {
         console.log(err.message);
@@ -52,7 +52,7 @@ export default function AdminDashboard() {
     const fetchTrekRequest = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/request");
-        setTrekRequest(response.data.data); // Set the fetched users
+        setTrekRequest(response.data.data);
         console.log(
           `Trek Request fetched: ${JSON.stringify(response.data.data)}`
         );
@@ -66,13 +66,13 @@ export default function AdminDashboard() {
   // Handle user deletion
   const handleDelete = async (id) => {
     try {
-      const token = localStorage.getItem("token"); // Retrieve token from localStorage (or sessionStorage)
+      const token = localStorage.getItem("token");
       await axios.delete(`http://localhost:5000/api/user/${id}`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Ensure token is included
+          Authorization: `Bearer ${token}`,
         },
       });
-      setUsers(users.filter((user) => user.userId !== id)); // Remove the user from state
+      setUsers(users.filter((user) => user.userId !== id));
       console.log(`User ${id} deleted.`);
     } catch (err) {
       console.log("Error deleting user:", err.message);
@@ -82,7 +82,7 @@ export default function AdminDashboard() {
   const handleRequestDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/request/${id}`);
-      setTrekRequest(trekRequest.filter((request) => request.requestId !== id)); // Remove the user from state
+      setTrekRequest(trekRequest.filter((request) => request.requestId !== id));
       console.log(`Request ${id} deleted.`);
     } catch (err) {
       console.log("Error deleting request:", err.message);
@@ -214,10 +214,10 @@ export default function AdminDashboard() {
           <h1>User List</h1>
           <DataTable
             columns={userColumns}
-            data={users} // Dynamically set users data
+            data={users}
             pagination
             highlightOnHover
-            keyField="userId" // Ensure this is the unique identifier
+            keyField="userId"
           />
         </div>
 
@@ -225,10 +225,10 @@ export default function AdminDashboard() {
           <h1>Trek Request List</h1>
           <DataTable
             columns={requestColumns}
-            data={trekRequest} // Dynamically set users data
+            data={trekRequest}
             pagination
             highlightOnHover
-            keyField="requestId" // Ensure this is the unique identifier
+            keyField="requestId"
           />
         </div>
       </div>

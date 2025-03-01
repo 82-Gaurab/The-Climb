@@ -9,7 +9,7 @@ export default function Sidebar() {
       localStorage.removeItem("token");
 
       // Redirect the user to the login page or homepage after logout
-      window.location.href = "/"; // Replace with your actual login page path
+      window.location.href = "/";
     } catch (err) {
       console.error("Error logging out:", err);
     }

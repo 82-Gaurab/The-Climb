@@ -43,8 +43,8 @@ const request = sequelize.define("requests", {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: Trek, // Reference the Trek model
-            key: "trekId"    // Foreign key references the id column in Treks table
+            model: Trek,
+            key: "trekId"
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE"

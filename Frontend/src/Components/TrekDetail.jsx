@@ -8,7 +8,7 @@ import Footer from "../utility/Footer";
 import RequestForm from "../utility/RequestForm";
 
 const TrekDetail = () => {
-  const { trekId } = useParams(); // Get trekId from URL
+  const { trekId } = useParams();
   const [trekData, setTrekData] = useState(null);
 
   useEffect(() => {
@@ -46,7 +46,6 @@ const TrekDetail = () => {
 
       {/* Main Content */}
       <div className="main-content">
-        {/* Left Column - Trek Details */}
         <div>
           <section className="section">
             <h2 className="section-title">Overview</h2>

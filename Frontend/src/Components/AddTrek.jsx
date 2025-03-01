@@ -71,7 +71,7 @@ const AddTrek = () => {
       }
 
       if (selectedFile) {
-        const data = new FormData(); // Create new FormData
+        const data = new FormData();
         data.append("file", selectedFile);
 
         const uploadResponse = await axios.post(
@@ -107,7 +107,7 @@ const AddTrek = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Include token
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -219,10 +219,10 @@ const AddTrek = () => {
             <div className="input-group">
               <label className="input-label">Description:</label>
               <TextareaAutosize
-                name="description" // Correctly reference the name
+                name="description"
                 className="input-field"
-                value={formData.description} // Ensure the value is bound to formData.description
-                onChange={handleChange} // Handle change for the description
+                value={formData.description}
+                onChange={handleChange}
                 placeholder="This is a sample description. Replace with your trek's detailed description."
                 minRows={3}
                 maxRows={5}

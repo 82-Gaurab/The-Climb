@@ -17,7 +17,6 @@ const create = async (req, res) => {
       email: body.email,
       password: hashPassword,
     });
-    // res.status(201).send({ data: users, message: "successfully created user" });
     res.status(201).json({ data: users, message: "successfully created user" });
 
   } catch (error) {
@@ -37,8 +36,6 @@ const deleteUser = async (req, res) => {
     if (result === 0) {
       return res.status(404).send({ message: "User not found" });
     }
-
-    // res.status(200).send({ message: "User deleted successfully" });
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.log(error);
@@ -51,7 +48,6 @@ const getAllUsers = async (req, res) => {
     const users = await Users.findAll({
       attributes: { exclude: ["password"] },
     });
-    // res.status(200).send({ data: users });
     res.status(200).json({ data: users });
   } catch (error) {
     console.log(error);

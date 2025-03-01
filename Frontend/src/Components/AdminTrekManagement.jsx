@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
@@ -102,10 +101,10 @@ export default function TrekManagement() {
             key={treks.trekId}
             title="Trek List"
             columns={columns}
-            data={treks} // Dynamically set users data
+            data={treks}
             pagination
             highlightOnHover
-            keyField="trekId" // Ensure this is the unique identifier
+            keyField="trekId"
             fixedHeader
           />
         </div>

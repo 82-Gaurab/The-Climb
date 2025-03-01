@@ -22,9 +22,9 @@ jest.mock('../model/userSchema', () => ({
     ),
   }));
   
-  // ✅ Import AFTER the mock is set up
+
   const Users = require('../model/userSchema'); 
-//   const userController = require('../controller/userController');
+
 
 describe('User Controller', () => {
     let req, res;
@@ -34,7 +34,7 @@ describe('User Controller', () => {
         res = {
           status: jest.fn().mockReturnThis(),
           json: jest.fn(),
-          send: jest.fn(), // Add this line
+          send: jest.fn(), 
         };
       });
   

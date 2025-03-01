@@ -1,4 +1,3 @@
-/* eslint-disable no-dupe-keys */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
@@ -92,7 +91,6 @@ export default function RequestForm({ trekId }) {
             placeholder="Your Name"
             required
             className="input-field"
-            //   onChange={handleChange}
           />
         </p>
 
@@ -105,7 +103,6 @@ export default function RequestForm({ trekId }) {
             placeholder="your.email@example.com"
             required
             className="input-field"
-            //   onChange={handleChange}
           />
         </p>
 
@@ -117,7 +114,6 @@ export default function RequestForm({ trekId }) {
             onChange={handleChange}
             placeholder="Phone no..."
             className="input-field"
-            //   onChange={handleChange}
           />
         </p>
         <p className="form-input">
@@ -129,7 +125,6 @@ export default function RequestForm({ trekId }) {
             placeholder="No fo People"
             className="input-field"
             min={0}
-            //   onChange={handleChange}
           />
         </p>
 

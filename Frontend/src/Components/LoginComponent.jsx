@@ -42,9 +42,8 @@ export default function LoginComponent() {
         navigate("/admin");
       }
     } catch (error) {
-      // Capture and display the error message from the backend
       if (error.response && error.response.data) {
-        setError(error.response.data.message); // Display error from backend
+        setError(error.response.data.message);
       } else {
         setError("An unexpected error occurred. Please try again.");
       }
@@ -62,7 +61,6 @@ export default function LoginComponent() {
           Login
         </p>
         {error && <p className="text-red-500">{error}</p>}{" "}
-        {/* Display backend error here */}
         <p className="flex flex-col items-center w-full">
           <input
             type="email"

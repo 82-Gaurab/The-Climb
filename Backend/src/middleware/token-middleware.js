@@ -16,11 +16,6 @@ function authenticateToken(req, res, next) {
   if (req.path === "/api/userProfile") {
     return next();
   }
-
-  // Get token from Authorization header
-  // const token = req.header("Authorization")?.split(" ")[1];
-  // console.log("Token2222222222222:", token);
-
   const authorizationHeader = req.header("Authorization");
   console.log("Authorization Header:", authorizationHeader);
 
@@ -37,8 +32,8 @@ function authenticateToken(req, res, next) {
     if (err) {
       return res.status(403).send("Invalid or expired token.");
     }
-    req.user = decoded; // Attach decoded payload to request object
-    next(); // Proceed to the next middleware or route handler
+    req.user = decoded;
+    next();
   });
 }
 
