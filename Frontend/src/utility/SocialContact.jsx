@@ -48,7 +48,10 @@ const SocialContact = () => {
         </button>
       </div>
       <div className="down">
-        <button className="github-card">
+        <button
+          onClick={() => window.open("https://github.com/82-Gaurab/The-Climb")}
+          className="github-card"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 30 30"
